@@ -338,6 +338,62 @@
     
     .program-link:hover { color: #d4b8e8; }
     
+    /* Membership Tiers */
+    .membership-card {
+      grid-column: span 2;
+    }
+    
+    .membership-tiers {
+      display: flex;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    
+    .tier {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    
+    .tier:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.2);
+    }
+    
+    .tier-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    .tier-price {
+      font-size: 1.3rem;
+      color: #b794d4;
+      font-family: Georgia, serif;
+    }
+    
+    .tier-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    @media (max-width: 768px) {
+      .membership-card {
+        grid-column: span 1;
+      }
+      .membership-tiers {
+        flex-direction: column;
+      }
+    }
+    
     /* Quote */
     .quote-section {
       background: var(--white);
@@ -520,7 +576,7 @@
       <canvas id="hero-logo"></canvas>
     </div>
     <h1>An open-science institute for understanding minds, brains, and behavior</h1>
-    <p class="hero-tagline">Improving the accessibility, rigor, and applicability of the Active Inference framework — a unified theory of perception, action, and learning.</p>
+    <p class="hero-tagline">Improving the accessibility, rigor, and applicability of the Active Inference framework - a unified theory of perception, action, and learning.</p>
     <div class="hero-cta">
       <a href="#" class="btn btn-primary">Start Learning</a>
       <a href="#" class="btn btn-outline">Watch Introduction</a>
@@ -558,7 +614,7 @@
       <h2>Bridging Theory and Practice</h2>
     </div>
     <div class="mission-content">
-      <p>Active Inference is a way of understanding sentient behavior — a theory that characterizes perception, planning, and action in terms of probabilistic inference. Developed by theoretical neuroscientist Karl Friston, it provides an integrated perspective on brain, cognition, and behavior.</p>
+      <p>Active Inference is a way of understanding sentient behavior - a theory that characterizes perception, planning, and action in terms of probabilistic inference. Developed by theoretical neuroscientist Karl Friston, it provides an integrated perspective on brain, cognition, and behavior.</p>
       <p>All backgrounds, time zones, and levels of familiarity with Active Inference are welcome to participate in the Institute.</p>
     </div>
   </div>
@@ -596,6 +652,28 @@
       <h2>Ways to Engage</h2>
     </div>
     <div class="programs-grid">
+      <div class="program-card membership-card">
+        <h3>Membership</h3>
+        <p>Join a global community advancing the science of minds, brains, and behavior. All members shape our direction - your contribution sustains open science.</p>
+        <div class="membership-tiers">
+          <div class="tier">
+            <span class="tier-name">Public Access</span>
+            <span class="tier-price">Free</span>
+            <span class="tier-desc">Newsletter, Discord, public livestreams, voting rights, textbook group access</span>
+          </div>
+          <div class="tier">
+            <span class="tier-name">Research Support</span>
+            <span class="tier-price">TBC</span>
+            <span class="tier-desc">Public Access +<br>1:1 expert sessions, course library, journal club, paper co-authorship opportunities</span>
+          </div>
+          <div class="tier">
+            <span class="tier-name">Advanced</span>
+            <span class="tier-price">TBC</span>
+            <span class="tier-desc">Research Support +<br>RxInfer.jl tools, pymdp library access, research datasets, simulation sandboxes, API access</span>
+          </div>
+        </div>
+        <a href="#" class="program-link">Become a Member &rarr;</a>
+      </div>
       <div class="program-card">
         <h3>Textbook Group</h3>
         <p>Join a cohort working through the foundational textbook with peer support and expert guidance.</p>
@@ -632,7 +710,7 @@
 <section class="cta-section" id="community">
   <div class="cta-inner">
     <h2>Join the Community</h2>
-    <p>Whether you are a neuroscientist, AI researcher, philosopher, or simply curious — there is a place for you here.</p>
+    <p>Whether you are a neuroscientist, AI researcher, philosopher, or simply curious - there is a place for you here.</p>
     <a href="#" class="btn">Get Started</a>
   </div>
 </section>
@@ -800,6 +878,149 @@ function resizeHeroLogo() {
 resizeHeroLogo();
 window.addEventListener('resize', resizeHeroLogo);
 
+// ═══ DIEGETIC AUDIO SYSTEM ═══
+// Sonifies the visual events: prism flash, spectral dispersion, breath
+let audioCtx = null;
+let audioEnabled = false;
+let lastSoundPhase = -1;
+
+function initAudio() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+
+// Prism: white noise burst → filtered sweep (light hitting prism)
+function playPrismHit() {
+  if (!audioCtx || !audioEnabled) return;
+  const now = audioCtx.currentTime;
+  
+  // Noise burst
+  const bufferSize = audioCtx.sampleRate * 0.15;
+  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3));
+  }
+  
+  const noise = audioCtx.createBufferSource();
+  noise.buffer = buffer;
+  
+  const filter = audioCtx.createBiquadFilter();
+  filter.type = 'bandpass';
+  filter.frequency.setValueAtTime(2000, now);
+  filter.frequency.exponentialRampToValueAtTime(8000, now + 0.1);
+  filter.Q.value = 2;
+  
+  const gain = audioCtx.createGain();
+  gain.gain.setValueAtTime(0.15, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+  
+  noise.connect(filter).connect(gain).connect(audioCtx.destination);
+  noise.start(now);
+}
+
+// Spectral dispersion: ascending harmonic series (ROYGBIV frequencies)
+function playSpectralSweep() {
+  if (!audioCtx || !audioEnabled) return;
+  const now = audioCtx.currentTime;
+  
+  // Frequencies mapped to visible spectrum (Red=low, Violet=high)
+  const freqs = [220, 277, 330, 392, 494, 587, 698]; // A3 to F5 (roughly)
+  
+  freqs.forEach((freq, i) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    
+    const delay = i * 0.08;
+    const attack = 0.05;
+    const decay = 0.4;
+    
+    gain.gain.setValueAtTime(0, now + delay);
+    gain.gain.linearRampToValueAtTime(0.08, now + delay + attack);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + delay + attack + decay);
+    
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(now + delay);
+    osc.stop(now + delay + attack + decay + 0.1);
+  });
+}
+
+// Text shimmer: soft granular texture
+function playTextShimmer() {
+  if (!audioCtx || !audioEnabled) return;
+  const now = audioCtx.currentTime;
+  
+  for (let i = 0; i < 12; i++) {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.value = 800 + Math.random() * 1200;
+    
+    const delay = i * 0.06 + Math.random() * 0.03;
+    gain.gain.setValueAtTime(0, now + delay);
+    gain.gain.linearRampToValueAtTime(0.025, now + delay + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.15);
+    
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(now + delay);
+    osc.stop(now + delay + 0.2);
+  }
+}
+
+// Breath tone: gentle sine pad that swells
+function playBreathTone(phase) {
+  if (!audioCtx || !audioEnabled) return;
+  const now = audioCtx.currentTime;
+  
+  const fundamental = 110; // A2
+  const harmonics = [1, 2, 3, 5];
+  
+  harmonics.forEach((h, i) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.value = fundamental * h;
+    
+    const amp = 0.04 / (i + 1);
+    gain.gain.setValueAtTime(amp * phase, now);
+    gain.gain.linearRampToValueAtTime(amp * 0.3, now + 0.5);
+    
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.6);
+  });
+}
+
+// Triple-click to replay with sound
+let clickCount = 0;
+let clickTimer = null;
+
+heroLogoCanvas.addEventListener('click', () => {
+  clickCount++;
+  
+  if (clickTimer) clearTimeout(clickTimer);
+  
+  clickTimer = setTimeout(() => {
+    if (clickCount >= 3) {
+      // Triple click - replay with sound
+      initAudio();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      audioEnabled = true;
+      logoT = 0;
+      lastSoundPhase = -1;
+    }
+    clickCount = 0;
+  }, 300);
+});
+
+heroLogoCanvas.style.cursor = 'pointer';
+heroLogoCanvas.title = 'Triple-click to replay with sound';
+
 let logoT = 0;
 
 function drawHeroLogo() {
@@ -819,6 +1040,32 @@ function drawHeroLogo() {
   const T1 = 1.8, T2 = 2.5;                      // Flash duration, wave duration
   const pFlash = Math.min(1, logoT / T1);
   const pWave = Math.max(0, (logoT - 1.2) / T2);
+  
+  // ═══ SOUND TRIGGERS ═══
+  if (audioEnabled) {
+    // Prism hit at start
+    if (lastSoundPhase < 0 && logoT > 0.1) {
+      playPrismHit();
+      lastSoundPhase = 0;
+    }
+    // Spectral dispersion
+    if (lastSoundPhase < 1 && pFlash > 0.3) {
+      playSpectralSweep();
+      lastSoundPhase = 1;
+    }
+    // Text shimmer
+    if (lastSoundPhase < 2 && pWave > 0.1) {
+      playTextShimmer();
+      lastSoundPhase = 2;
+    }
+    // First breath tone after animation completes, then disable further sounds
+    if (lastSoundPhase === 2 && Cs > 0.9) {
+      playBreathTone(0.7);
+      lastSoundPhase = 3;
+      // Disable audio after intro sequence
+      setTimeout(() => { audioEnabled = false; }, 600);
+    }
+  }
   
   if (pFlash < 1) drawPrismFlash(hlCtx, pFlash);
   
