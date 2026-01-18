@@ -912,12 +912,12 @@ function drawSpectralText(ctx, txt, x, y, sz, α, wP, t, delay, ctr) {
   const λ0 = 0.12, σ = 0.09, k = TAU/λ0;           // Wave packet params - wider σ
   const A = 1, B = 0.018;                           // Cauchy coefficients
   
-  // ROYGBIV with refractive indices
+  // ROYGBIV with refractive indices - vivid rainbow
   const S = [
-    {h:0,s:75,l:58,n:A+B/0.16},    {h:25,s:80,l:58,n:A+B/0.13},
-    {h:48,s:85,l:55,n:A+B/0.11},   {h:120,s:60,l:48,n:A+B/0.09},
-    {h:210,s:70,l:55,n:A+B/0.07},  {h:255,s:60,l:55,n:A+B/0.05},
-    {h:280,s:55,l:58,n:A+B/0.04}
+    {h:0,s:100,l:55,n:A+B/0.16},    {h:30,s:100,l:55,n:A+B/0.13},
+    {h:55,s:100,l:50,n:A+B/0.11},   {h:120,s:100,l:45,n:A+B/0.09},
+    {h:200,s:100,l:55,n:A+B/0.07},  {h:260,s:100,l:60,n:A+B/0.05},
+    {h:290,s:100,l:60,n:A+B/0.04}
   ];
   
   const wf = p * 1.6;  // Wave front position
@@ -935,7 +935,7 @@ function drawSpectralText(ctx, txt, x, y, sz, α, wP, t, delay, ctr) {
       const carrier = 0.5 + 0.5 * Math.cos(k*ξ - t*4);
       const I = env * carrier * (p < 1 ? 1 : Math.max(0, 2-p*2));
       if (I > 0.01) {
-        ctx.fillStyle = `hsla(${c.h},${c.s}%,${c.l}%,${I*α*0.7})`;
+        ctx.fillStyle = `hsla(${c.h},${c.s}%,${c.l}%,${I*α*0.95})`;
         ctx.fillText(txt[j], cx, y);
       }
     }
@@ -947,8 +947,8 @@ function drawSpectralText(ctx, txt, x, y, sz, α, wP, t, delay, ctr) {
 
 // ═══ PRISM FLASH - Newton's dispersion ═══
 function drawPrismFlash(ctx, p) {
-  const S = [{h:0,s:75,l:58},{h:25,s:80,l:58},{h:48,s:85,l:55},
-             {h:120,s:60,l:48},{h:210,s:70,l:55},{h:255,s:60,l:55},{h:280,s:55,l:58}];
+  const S = [{h:0,s:100,l:55},{h:30,s:100,l:55},{h:55,s:100,l:50},
+             {h:120,s:100,l:45},{h:200,s:100,l:55},{h:260,s:100,l:60},{h:290,s:100,l:60}];
   ctx.save();
   ctx.globalCompositeOperation = 'screen';
   
@@ -957,7 +957,7 @@ function drawPrismFlash(ctx, p) {
     const q = p / 0.3, bx = CX - 100 + q * 80;
     const g = ctx.createLinearGradient(bx-40, CY, bx, CY);
     g.addColorStop(0, 'rgba(255,255,255,0)');
-    g.addColorStop(1, `rgba(255,255,255,${q*0.7})`);
+    g.addColorStop(1, `rgba(255,255,255,${q*0.85})`);
     ctx.beginPath();
     ctx.moveTo(bx-40, CY-12);
     ctx.lineTo(bx, CY);
@@ -974,14 +974,14 @@ function drawPrismFlash(ctx, p) {
       ctx.beginPath();
       ctx.moveTo(CX+25, CY);
       ctx.lineTo(CX+25 + Math.cos(θ)*r, CY + Math.sin(θ)*r);
-      ctx.strokeStyle = `hsla(${S[i].h},${S[i].s}%,${S[i].l}%,${0.4+e*0.5})`;
-      ctx.lineWidth = 3 - e*0.5;
+      ctx.strokeStyle = `hsla(${S[i].h},${S[i].s}%,${S[i].l}%,${0.5+e*0.5})`;
+      ctx.lineWidth = 3.5 - e*0.5;
       ctx.lineCap = 'round';
       ctx.stroke();
     }
   } else {
     // Fade & propagate toward text
-    const q = (p-0.7)/0.3, a = (1-q)*0.6;
+    const q = (p-0.7)/0.3, a = (1-q)*0.75;
     for (let i = 0; i < S.length; i++) {
       const θ = -0.35 + i/(S.length-1) * 0.7;
       const r = 100 + q*50;
@@ -989,7 +989,7 @@ function drawPrismFlash(ctx, p) {
       ctx.moveTo(CX+25+q*30, CY);
       ctx.lineTo(CX+25+q*30 + Math.cos(θ)*r, CY + Math.sin(θ)*r);
       ctx.strokeStyle = `hsla(${S[i].h},${S[i].s}%,${S[i].l}%,${a})`;
-      ctx.lineWidth = 2.5;
+      ctx.lineWidth = 3;
       ctx.lineCap = 'round';
       ctx.stroke();
     }
