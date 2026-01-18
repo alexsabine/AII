@@ -517,7 +517,7 @@
   <canvas id="hero-canvas" class="hero-canvas"></canvas>
   <div class="hero-content">
     <div class="hero-logo-area">
-      <canvas id="hero-logo" width="600" height="200"></canvas>
+      <canvas id="hero-logo"></canvas>
     </div>
     <h1>An open-science institute for understanding minds, brains, and behavior</h1>
     <p class="hero-tagline">Improving the accessibility, rigor, and applicability of the Active Inference framework — a unified theory of perception, action, and learning.</p>
@@ -752,23 +752,61 @@ animateHeroBackground();
 // ═══ HERO LOGO ═══
 const heroLogoCanvas = document.getElementById('hero-logo');
 const hlCtx = heroLogoCanvas.getContext('2d');
-const HLW = 600, HLH = 200;
 
-const D = devicePixelRatio || 1;
-heroLogoCanvas.width = HLW * D;
-heroLogoCanvas.height = HLH * D;
-heroLogoCanvas.style.width = HLW + 'px';
-heroLogoCanvas.style.height = HLH + 'px';
-hlCtx.scale(D, D);
+// Mobile detection and responsive sizing
+function isMobile() {
+  return window.innerWidth <= 768;
+}
 
-const CX = 90, CY = HLH / 2 + 10;
-const sc = 70;
+let HLW, HLH, CX, CY, sc, TX_OFFSET, FONT_MAIN, FONT_EST, FONT_ASI;
+
+function calculateLogoDimensions() {
+  const mobile = isMobile();
+  HLW = mobile ? Math.min(360, window.innerWidth - 40) : 600;
+  HLH = mobile ? 280 : 200;
+  
+  // Mobile: center the pi symbol, stack text below
+  // Desktop: pi on left, text to right
+  if (mobile) {
+    CX = HLW / 2;
+    CY = 70;
+    sc = 55;
+    TX_OFFSET = 0; // Text centered below
+    FONT_MAIN = 28;
+    FONT_EST = 13;
+    FONT_ASI = 15;
+  } else {
+    CX = 90;
+    CY = HLH / 2 + 10;
+    sc = 70;
+    TX_OFFSET = CX + 55;
+    FONT_MAIN = 38;
+    FONT_EST = 15;
+    FONT_ASI = 18;
+  }
+}
+
+function resizeHeroLogo() {
+  calculateLogoDimensions();
+  const D = devicePixelRatio || 1;
+  heroLogoCanvas.width = HLW * D;
+  heroLogoCanvas.height = HLH * D;
+  heroLogoCanvas.style.width = HLW + 'px';
+  heroLogoCanvas.style.height = HLH + 'px';
+  hlCtx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform
+  hlCtx.scale(D, D);
+}
+
+resizeHeroLogo();
+window.addEventListener('resize', resizeHeroLogo);
 
 let logoT = 0;
 
 function drawHeroLogo() {
   hlCtx.clearRect(0, 0, HLW, HLH);
   logoT += 0.016;
+  
+  const mobile = isMobile();
   
   // ═══ PHASE DYNAMICS ═══
   const ξ = logoT * ψ;                           // Phase accumulation  
@@ -797,33 +835,64 @@ function drawHeroLogo() {
   
   // ═══ CHILDREN - φ-locked oscillation ═══
   const cφ = logoT * φ * 0.8;
-  drawMiniPi(hlCtx, CX - 8, CY - sc*0.44 - 8 - Math.sin(cφ)*1.5*Cs, 0.16, -0.3);
-  drawMiniPi(hlCtx, CX + 10, CY - sc*0.44 - 8 - Math.sin(cφ+PI)*1.5*Cs, 0.16, 0.35);
+  const miniScale = mobile ? 0.14 : 0.16;
+  drawMiniPi(hlCtx, CX - 8, CY - sc*0.44 - 8 - Math.sin(cφ)*1.5*Cs, miniScale, -0.3);
+  drawMiniPi(hlCtx, CX + 10, CY - sc*0.44 - 8 - Math.sin(cφ+PI)*1.5*Cs, miniScale, 0.35);
   
   // ═══ TEXT WITH CHROMATIC WAVE ═══
-  const TX = CX + 55;
-  drawSpectralText(hlCtx, 'Active Inference', TX, CY-20, 38, Cs, pWave, logoT, 0);
-  drawSpectralText(hlCtx, 'Institute', TX, CY+25, 38, Cs, pWave, logoT, 0.15);
-  
-  // Est. 2020 - phase-delayed shimmer
-  const estP = Math.max(0, (pWave - 0.3) / 0.7);
-  const estΔ = estP > 0 && estP < 1 ? Math.sin(estP * PI) * 0.3 : 0;
-  hlCtx.font = 'italic 15px Georgia, "Times New Roman", Times, serif';
-  hlCtx.textAlign = 'left';
-  hlCtx.fillStyle = `rgba(${201+estΔ*50|0},${162+estΔ*40|0},39,${Cs*0.85})`;
-  hlCtx.fillText('Est. 2020', TX + 175, CY + 26);
-  
-  // Act - Serve - Infer with staggered wave
-  const WY = HLH - 30;
-  drawSpectralText(hlCtx, 'Act', TX+50, WY, 18, Cs*0.9, pWave, logoT, 0.35, 1);
-  drawSpectralText(hlCtx, 'Serve', TX+145, WY, 18, Cs*0.9, pWave, logoT, 0.45, 1);
-  drawSpectralText(hlCtx, 'Infer', TX+245, WY, 18, Cs*0.9, pWave, logoT, 0.55, 1);
-  
-  hlCtx.font = '400 14px Georgia';
-  hlCtx.fillStyle = `rgba(255,255,255,${Cs*0.5})`;
-  hlCtx.textAlign = 'center';
-  hlCtx.fillText('-', TX+97, WY);
-  hlCtx.fillText('-', TX+195, WY);
+  if (mobile) {
+    // Mobile: stacked layout, centered below pi
+    const textCenterX = HLW / 2;
+    const textStartY = CY + sc * 0.7 + 20;
+    
+    drawSpectralText(hlCtx, 'Active Inference', textCenterX, textStartY, FONT_MAIN, Cs, pWave, logoT, 0, 1);
+    drawSpectralText(hlCtx, 'Institute', textCenterX, textStartY + 36, FONT_MAIN, Cs, pWave, logoT, 0.15, 1);
+    
+    // Est. 2020 - centered
+    const estP = Math.max(0, (pWave - 0.3) / 0.7);
+    const estΔ = estP > 0 && estP < 1 ? Math.sin(estP * PI) * 0.3 : 0;
+    hlCtx.font = `italic ${FONT_EST}px Georgia, "Times New Roman", Times, serif`;
+    hlCtx.textAlign = 'center';
+    hlCtx.fillStyle = `rgba(${201+estΔ*50|0},${162+estΔ*40|0},39,${Cs*0.85})`;
+    hlCtx.fillText('Est. 2020', textCenterX, textStartY + 72);
+    
+    // Act - Serve - Infer centered at bottom
+    const WY = HLH - 25;
+    drawSpectralText(hlCtx, 'Act', textCenterX - 70, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.35, 1);
+    drawSpectralText(hlCtx, 'Serve', textCenterX, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.45, 1);
+    drawSpectralText(hlCtx, 'Infer', textCenterX + 70, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.55, 1);
+    
+    hlCtx.font = `400 ${FONT_ASI - 2}px Georgia`;
+    hlCtx.fillStyle = `rgba(255,255,255,${Cs*0.5})`;
+    hlCtx.textAlign = 'center';
+    hlCtx.fillText('-', textCenterX - 35, WY);
+    hlCtx.fillText('-', textCenterX + 35, WY);
+  } else {
+    // Desktop: original horizontal layout
+    const TX = CX + 55;
+    drawSpectralText(hlCtx, 'Active Inference', TX, CY-20, FONT_MAIN, Cs, pWave, logoT, 0);
+    drawSpectralText(hlCtx, 'Institute', TX, CY+25, FONT_MAIN, Cs, pWave, logoT, 0.15);
+    
+    // Est. 2020 - phase-delayed shimmer
+    const estP = Math.max(0, (pWave - 0.3) / 0.7);
+    const estΔ = estP > 0 && estP < 1 ? Math.sin(estP * PI) * 0.3 : 0;
+    hlCtx.font = `italic ${FONT_EST}px Georgia, "Times New Roman", Times, serif`;
+    hlCtx.textAlign = 'left';
+    hlCtx.fillStyle = `rgba(${201+estΔ*50|0},${162+estΔ*40|0},39,${Cs*0.85})`;
+    hlCtx.fillText('Est. 2020', TX + 175, CY + 26);
+    
+    // Act - Serve - Infer with staggered wave
+    const WY = HLH - 30;
+    drawSpectralText(hlCtx, 'Act', TX+50, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.35, 1);
+    drawSpectralText(hlCtx, 'Serve', TX+145, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.45, 1);
+    drawSpectralText(hlCtx, 'Infer', TX+245, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.55, 1);
+    
+    hlCtx.font = '400 14px Georgia';
+    hlCtx.fillStyle = `rgba(255,255,255,${Cs*0.5})`;
+    hlCtx.textAlign = 'center';
+    hlCtx.fillText('-', TX+97, WY);
+    hlCtx.fillText('-', TX+195, WY);
+  }
   
   requestAnimationFrame(drawHeroLogo);
 }
