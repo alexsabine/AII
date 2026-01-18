@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Active Inference Institute</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --black: #0d0d0d;
+      --deep: #1a1412;
+      --white: #fff;
+      --grey-dark: #1a1a1a;
+      --grey-mid: #4a4a4a;
+      --grey-light: #767676;
+      --grey-pale: #f7f7f7;
+      --grey-border: #e0e0e0;
+      --accent: #c54a2a;
+      --accent-light: #d65a3a;
+      --accent-warm: #b8442a;
+      --gold: #c9a227;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: var(--grey-dark);
+      line-height: 1.7;
+      background: var(--white);
+    }
+    
+    /* Header */
+    .header {
+      background: var(--black);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      padding: 0 40px;
+    }
+    
+    .logo-container canvas {
+      display: block;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      letter-spacing: 0.3px;
+    }
+    
+    .nav-links a:hover { color: var(--white); }
+    
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 10px 24px;
+      font-weight: 500;
+    }
+    
+    .nav-cta:hover { background: var(--accent-light); }
+    
+    /* Hero Section - Full viewport with living canvas */
+    .hero {
+      min-height: 100vh;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 180px 40px 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      justify-content: center;
+    }
+    
+    .hero-logo-area {
+      margin-bottom: 60px;
+    }
+    
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 24px;
+      line-height: 1.4;
+      max-width: 700px;
+    }
+    
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 48px;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .btn {
+      padding: 14px 32px;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-block;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+    
+    .btn-primary:hover { background: var(--accent-light); }
+    
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+    }
+    
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.5);
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      background: var(--white);
+      padding: 80px 40px;
+      border-bottom: 1px solid var(--grey-border);
+    }
+    
+    .stats-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-item h3 {
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    
+    .stat-item p {
+      color: var(--grey-mid);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    /* Content Sections */
+    .section {
+      padding: 100px 40px;
+    }
+    
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      margin-bottom: 60px;
+      text-align: center;
+    }
+    
+    .section-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 600;
+    }
+    
+    .section-header h2 {
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--grey-dark);
+    }
+    
+    /* Mission */
+    .mission-section {
+      background: var(--grey-pale);
+    }
+    
+    .mission-content {
+      max-width: 750px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .mission-content p {
+      font-size: 1.15rem;
+      color: var(--grey-mid);
+      margin-bottom: 24px;
+      line-height: 1.9;
+    }
+    
+    /* Pillars */
+    .pillars-section {
+      background: var(--white);
+    }
+    
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    
+    .pillar-card {
+      text-align: center;
+      padding: 50px 30px;
+      border: 1px solid var(--grey-border);
+      transition: all 0.3s ease;
+    }
+    
+    .pillar-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    }
+    
+    .pillar-card h3 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 16px;
+      color: var(--grey-dark);
+    }
+    
+    .pillar-card p {
+      color: var(--grey-mid);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    
+    /* Programs */
+    .programs-section {
+      background: var(--deep);
+      color: var(--white);
+    }
+    
+    .programs-section .section-label { color: rgba(255,255,255,0.4); }
+    .programs-section .section-header h2 { color: var(--white); }
+    
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .program-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 36px;
+      transition: all 0.2s ease;
+    }
+    
+    .program-card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.15);
+    }
+    
+    .program-card h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    
+    .program-card p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    
+    .program-link {
+      color: #b794d4;
+      text-decoration: none;
+      font-size: 13px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 500;
+    }
+    
+    .program-link:hover { color: #d4b8e8; }
+    
+    /* Quote */
+    .quote-section {
+      background: var(--white);
+      padding: 100px 40px;
+      text-align: center;
+      border-top: 1px solid var(--grey-border);
+    }
+    
+    .quote-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    blockquote {
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--grey-dark);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    
+    .quote-author {
+      color: var(--grey-light);
+      font-size: 0.95rem;
+    }
+    
+    .quote-author strong { color: var(--grey-mid); }
+    
+    /* CTA */
+    .cta-section {
+      background: var(--accent);
+      padding: 80px 40px;
+      text-align: center;
+    }
+    
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .cta-section h2 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    
+    .cta-section p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+    
+    .cta-section .btn {
+      background: var(--white);
+      color: var(--accent);
+    }
+    
+    .cta-section .btn:hover { background: var(--grey-pale); }
+    
+    /* Footer */
+    .footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 60px 40px 30px;
+    }
+    
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+    
+    .footer-brand p {
+      color: rgba(255,255,255,0.5);
+      margin-top: 20px;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    
+    .footer-col h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 600;
+    }
+    
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    
+    .footer-col a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    
+    .footer-col a:hover { color: var(--white); }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .footer-bottom p {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .social-links a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.2s;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    .social-links a:hover { color: var(--white); }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .programs-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .header-inner { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero-content { padding: 140px 20px 60px; }
+      .section { padding: 60px 20px; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-container">
+      <canvas id="header-logo" width="280" height="40"></canvas>
+    </div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#research">Research</a>
+      <a href="#community">Community</a>
+      <a href="#" class="nav-cta">Get Involved</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero with Living Background -->
+<section class="hero">
+  <canvas id="hero-canvas" class="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-logo-area">
+      <canvas id="hero-logo" width="600" height="200"></canvas>
+    </div>
+    <h1>An open-science institute for understanding minds, brains, and behavior</h1>
+    <p class="hero-tagline">Improving the accessibility, rigor, and applicability of the Active Inference framework — a unified theory of perception, action, and learning.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">Start Learning</a>
+      <a href="#" class="btn btn-outline">Watch Introduction</a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <h3>7+</h3>
+      <p>Textbook Cohorts</p>
+    </div>
+    <div class="stat-item">
+      <h3>1,000+</h3>
+      <p>Community Members</p>
+    </div>
+    <div class="stat-item">
+      <h3>100+</h3>
+      <p>Livestreams</p>
+    </div>
+    <div class="stat-item">
+      <h3>501(c)(3)</h3>
+      <p>Nonprofit</p>
+    </div>
+  </div>
+</section>
+
+<!-- Mission -->
+<section class="section mission-section" id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Our Mission</p>
+      <h2>Bridging Theory and Practice</h2>
+    </div>
+    <div class="mission-content">
+      <p>Active Inference is a way of understanding sentient behavior — a theory that characterizes perception, planning, and action in terms of probabilistic inference. Developed by theoretical neuroscientist Karl Friston, it provides an integrated perspective on brain, cognition, and behavior.</p>
+      <p>All backgrounds, time zones, and levels of familiarity with Active Inference are welcome to participate in the Institute.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pillars -->
+<section class="section pillars-section" id="education">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">What We Do</p>
+      <h2>Act, Serve, Infer</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <h3>Education</h3>
+        <p>Textbook groups, courses, workshops, and internships that scaffold your journey from curious beginner to active contributor.</p>
+      </div>
+      <div class="pillar-card">
+        <h3>Research</h3>
+        <p>Collaborative projects advancing Active Inference theory and applications, from RxInfer.jl to theoretical neurobiology.</p>
+      </div>
+      <div class="pillar-card">
+        <h3>Community</h3>
+        <p>A welcoming global network connected through Discord, livestreams, and our annual Applied Active Inference Symposium.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Programs -->
+<section class="section programs-section" id="research">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Programs</p>
+      <h2>Ways to Engage</h2>
+    </div>
+    <div class="programs-grid">
+      <div class="program-card">
+        <h3>Textbook Group</h3>
+        <p>Join a cohort working through the foundational textbook with peer support and expert guidance.</p>
+        <a href="#" class="program-link">Join Cohort 8 &rarr;</a>
+      </div>
+      <div class="program-card">
+        <h3>RxInfer.jl</h3>
+        <p>Learn and apply RxInfer.jl, an open-source package for probabilistic graphical inference.</p>
+        <a href="#" class="program-link">Explore RxInfer &rarr;</a>
+      </div>
+      <div class="program-card">
+        <h3>Internship Program</h3>
+        <p>Develop a personalized education and research curriculum with dedicated mentorship.</p>
+        <a href="#" class="program-link">Apply Now &rarr;</a>
+      </div>
+      <div class="program-card">
+        <h3>Livestreams</h3>
+        <p>Weekly presentations and discussions featuring leading researchers including Karl Friston.</p>
+        <a href="#" class="program-link">View Schedule &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quote -->
+<section class="quote-section">
+  <div class="quote-inner">
+    <blockquote>"The brain is fundamentally an inference machine, trying to predict its sensory inputs."</blockquote>
+    <p class="quote-author"><strong>Karl Friston FRS</strong><br>Scientific Director, Wellcome Centre for Human Neuroimaging</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="community">
+  <div class="cta-inner">
+    <h2>Join the Community</h2>
+    <p>Whether you are a neuroscientist, AI researcher, philosopher, or simply curious — there is a place for you here.</p>
+    <a href="#" class="btn">Get Started</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <canvas id="footer-logo" width="220" height="35"></canvas>
+        <p>The Active Inference Institute is a 501(c)(3) nonprofit dedicated to improving the accessibility, rigor, and applicability of Active Inference.</p>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Strategy</a></li>
+          <li><a href="#">Board</a></li>
+          <li><a href="#">History</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Education</h4>
+        <ul>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Textbook Group</a></li>
+          <li><a href="#">Symposium</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Discord</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">Donate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>2025 The Active Inference Institute</p>
+      <div class="social-links">
+        <a href="#">YouTube</a>
+        <a href="#">Discord</a>
+        <a href="#">Newsletter</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// CRR-INFUSED LIVING BACKGROUND
+// Coherence builds, ruptures occur, regeneration follows
+// All driven by φ and π timing, breath rhythms
+// ═══════════════════════════════════════════════════════════════════════════
+
+const PI = Math.PI, TAU = PI * 2;
+const φ = 1.618033988749895;
+const ψ = 0.618033988749895;
+const BREATH = PI * PI; // ~10 second cycle
+const Ω = 1 / TAU;
+
+// ═══ HERO BACKGROUND CANVAS ═══
+const heroCanvas = document.getElementById('hero-canvas');
+const heroCtx = heroCanvas.getContext('2d');
+
+function resizeHeroCanvas() {
+  const D = devicePixelRatio || 1;
+  heroCanvas.width = window.innerWidth * D;
+  heroCanvas.height = window.innerHeight * D;
+  heroCanvas.style.width = window.innerWidth + 'px';
+  heroCanvas.style.height = window.innerHeight + 'px';
+  heroCtx.scale(D, D);
+}
+resizeHeroCanvas();
+window.addEventListener('resize', resizeHeroCanvas);
+
+// Subtle gradient waves - breath rhythm
+function drawBreathWaves(ctx, t, W, H) {
+  const breathPhase = (t % BREATH) / BREATH;
+  const breathAmp = Math.sin(breathPhase * TAU) * 0.5 + 0.5;
+  
+  // Very subtle radial gradient that pulses - warm tones
+  const gradient = ctx.createRadialGradient(
+    W * 0.5, H * 0.4, 0,
+    W * 0.5, H * 0.4, W * 0.8
+  );
+  
+  const intensity = 0.025 + breathAmp * 0.015;
+  gradient.addColorStop(0, `rgba(180, 70, 45, ${intensity})`);
+  gradient.addColorStop(0.5, `rgba(100, 50, 40, ${intensity * 0.5})`);
+  gradient.addColorStop(1, 'rgba(13, 13, 13, 0)');
+  
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, W, H);
+}
+
+let heroT = 0;
+
+function animateHeroBackground() {
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+  
+  heroT += 0.016;
+  
+  // Clear with deep background
+  heroCtx.fillStyle = '#0d0d0d';
+  heroCtx.fillRect(0, 0, W, H);
+  
+  // Subtle breath waves only - no particles
+  drawBreathWaves(heroCtx, heroT, W, H);
+  
+  requestAnimationFrame(animateHeroBackground);
+}
+
+animateHeroBackground();
+
+// ═══ HERO LOGO ═══
+const heroLogoCanvas = document.getElementById('hero-logo');
+const hlCtx = heroLogoCanvas.getContext('2d');
+const HLW = 600, HLH = 200;
+
+const D = devicePixelRatio || 1;
+heroLogoCanvas.width = HLW * D;
+heroLogoCanvas.height = HLH * D;
+heroLogoCanvas.style.width = HLW + 'px';
+heroLogoCanvas.style.height = HLH + 'px';
+hlCtx.scale(D, D);
+
+const CX = 90, CY = HLH / 2 + 10;
+const sc = 70;
+
+let logoT = 0;
+
+function drawHeroLogo() {
+  hlCtx.clearRect(0, 0, HLW, HLH);
+  logoT += 0.016;
+  
+  // ═══ PHASE DYNAMICS ═══
+  const ξ = logoT * ψ;                           // Phase accumulation  
+  const β = (logoT % BREATH) / BREATH;           // Breath cycle
+  const breathMod = Math.sin(β * TAU);
+  const C = Math.min(1, logoT * 0.3);            // Coherence integral
+  const Cs = C * C * (3 - 2 * C);                // Smoothstep transfer function
+  
+  // ═══ PRISM FLASH → TEXT WAVE ═══
+  const T1 = 1.8, T2 = 2.5;                      // Flash duration, wave duration
+  const pFlash = Math.min(1, logoT / T1);
+  const pWave = Math.max(0, (logoT - 1.2) / T2);
+  
+  if (pFlash < 1) drawPrismFlash(hlCtx, pFlash);
+  
+  // ═══ PI SYMBOL ═══
+  const s = 1 + breathMod * 0.012 * Cs;
+  hlCtx.save();
+  hlCtx.translate(CX, CY);
+  hlCtx.scale(s, s);
+  hlCtx.translate(-CX, -CY);
+  hlCtx.fillStyle = '#fff';
+  drawPiPath(hlCtx, CX, CY, sc);
+  hlCtx.fill();
+  hlCtx.restore();
+  
+  // ═══ CHILDREN - φ-locked oscillation ═══
+  const cφ = logoT * φ * 0.8;
+  drawMiniPi(hlCtx, CX - 8, CY - sc*0.44 - 8 - Math.sin(cφ)*1.5*Cs, 0.16, -0.3);
+  drawMiniPi(hlCtx, CX + 10, CY - sc*0.44 - 8 - Math.sin(cφ+PI)*1.5*Cs, 0.16, 0.35);
+  
+  // ═══ TEXT WITH CHROMATIC WAVE ═══
+  const TX = CX + 55;
+  drawSpectralText(hlCtx, 'Active Inference', TX, CY-20, 38, Cs, pWave, logoT, 0);
+  drawSpectralText(hlCtx, 'Institute', TX, CY+25, 38, Cs, pWave, logoT, 0.15);
+  
+  // Est. 2020 - phase-delayed shimmer
+  const estP = Math.max(0, (pWave - 0.3) / 0.7);
+  const estΔ = estP > 0 && estP < 1 ? Math.sin(estP * PI) * 0.3 : 0;
+  hlCtx.font = 'italic 15px Georgia, "Times New Roman", Times, serif';
+  hlCtx.textAlign = 'left';
+  hlCtx.fillStyle = `rgba(${201+estΔ*50|0},${162+estΔ*40|0},39,${Cs*0.85})`;
+  hlCtx.fillText('Est. 2020', TX + 175, CY + 26);
+  
+  // Act - Serve - Infer with staggered wave
+  const WY = HLH - 30;
+  drawSpectralText(hlCtx, 'Act', TX+50, WY, 18, Cs*0.9, pWave, logoT, 0.35, 1);
+  drawSpectralText(hlCtx, 'Serve', TX+145, WY, 18, Cs*0.9, pWave, logoT, 0.45, 1);
+  drawSpectralText(hlCtx, 'Infer', TX+245, WY, 18, Cs*0.9, pWave, logoT, 0.55, 1);
+  
+  hlCtx.font = '400 14px Georgia';
+  hlCtx.fillStyle = `rgba(255,255,255,${Cs*0.5})`;
+  hlCtx.textAlign = 'center';
+  hlCtx.fillText('-', TX+97, WY);
+  hlCtx.fillText('-', TX+195, WY);
+  
+  requestAnimationFrame(drawHeroLogo);
+}
+
+// ═══ SPECTRAL TEXT - Chromatic dispersion wave ═══
+// Models: Gaussian wave packet, Cauchy dispersion n(λ)=A+B/λ², 
+// phase velocity v(λ)=c/n(λ), group velocity, interference
+function drawSpectralText(ctx, txt, x, y, sz, α, wP, t, delay, ctr) {
+  const p = Math.max(0, Math.min(1, (wP - delay) / (1 - delay)));
+  ctx.font = `600 ${sz}px Georgia, "Times New Roman", Times, serif`;
+  ctx.textAlign = ctr ? 'center' : 'left';
+  ctx.textBaseline = 'middle';
+  
+  if (p <= 0) { ctx.fillStyle = `rgba(255,255,255,${α})`; ctx.fillText(txt, x, y); return; }
+  
+  const m = ctx.measureText(txt), W = m.width, x0 = ctr ? x - W/2 : x;
+  const λ0 = 0.12, σ = 0.09, k = TAU/λ0;           // Wave packet params - wider σ
+  const A = 1, B = 0.018;                           // Cauchy coefficients
+  
+  // ROYGBIV with refractive indices
+  const S = [
+    {h:0,s:75,l:58,n:A+B/0.16},    {h:25,s:80,l:58,n:A+B/0.13},
+    {h:48,s:85,l:55,n:A+B/0.11},   {h:120,s:60,l:48,n:A+B/0.09},
+    {h:210,s:70,l:55,n:A+B/0.07},  {h:255,s:60,l:55,n:A+B/0.05},
+    {h:280,s:55,l:58,n:A+B/0.04}
+  ];
+  
+  const wf = p * 1.6;  // Wave front position
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  
+  for (let i = 0; i < S.length; i++) {
+    const c = S[i], Δn = (c.n - S[0].n) * 0.6;     // Chromatic aberration
+    for (let j = 0; j < txt.length; j++) {
+      const cx = x0 + ctx.measureText(txt.slice(0,j)).width;
+      const ξ = (cx - x0) / W;                      // Normalized position
+      const d = ξ - (wf - Δn);                      // Distance from wave front
+      // Gaussian envelope × carrier wave
+      const env = Math.exp(-d*d / (2*σ*σ));
+      const carrier = 0.5 + 0.5 * Math.cos(k*ξ - t*4);
+      const I = env * carrier * (p < 1 ? 1 : Math.max(0, 2-p*2));
+      if (I > 0.01) {
+        ctx.fillStyle = `hsla(${c.h},${c.s}%,${c.l}%,${I*α*0.7})`;
+        ctx.fillText(txt[j], cx, y);
+      }
+    }
+  }
+  ctx.restore();
+  ctx.fillStyle = `rgba(255,255,255,${α})`;
+  ctx.fillText(txt, x, y);
+}
+
+// ═══ PRISM FLASH - Newton's dispersion ═══
+function drawPrismFlash(ctx, p) {
+  const S = [{h:0,s:75,l:58},{h:25,s:80,l:58},{h:48,s:85,l:55},
+             {h:120,s:60,l:48},{h:210,s:70,l:55},{h:255,s:60,l:55},{h:280,s:55,l:58}];
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  
+  if (p < 0.3) {
+    // Incident white light
+    const q = p / 0.3, bx = CX - 100 + q * 80;
+    const g = ctx.createLinearGradient(bx-40, CY, bx, CY);
+    g.addColorStop(0, 'rgba(255,255,255,0)');
+    g.addColorStop(1, `rgba(255,255,255,${q*0.7})`);
+    ctx.beginPath();
+    ctx.moveTo(bx-40, CY-12);
+    ctx.lineTo(bx, CY);
+    ctx.lineTo(bx-40, CY+12);
+    ctx.closePath();
+    ctx.fillStyle = g;
+    ctx.fill();
+  } else if (p < 0.7) {
+    // Dispersion - Snell's law at each λ
+    const q = (p-0.3)/0.4, e = q*q*(3-2*q);
+    for (let i = 0; i < S.length; i++) {
+      const θ = -0.35 + i/(S.length-1) * 0.7;
+      const r = 30 + e * 70;
+      ctx.beginPath();
+      ctx.moveTo(CX+25, CY);
+      ctx.lineTo(CX+25 + Math.cos(θ)*r, CY + Math.sin(θ)*r);
+      ctx.strokeStyle = `hsla(${S[i].h},${S[i].s}%,${S[i].l}%,${0.4+e*0.5})`;
+      ctx.lineWidth = 3 - e*0.5;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+    }
+  } else {
+    // Fade & propagate toward text
+    const q = (p-0.7)/0.3, a = (1-q)*0.6;
+    for (let i = 0; i < S.length; i++) {
+      const θ = -0.35 + i/(S.length-1) * 0.7;
+      const r = 100 + q*50;
+      ctx.beginPath();
+      ctx.moveTo(CX+25+q*30, CY);
+      ctx.lineTo(CX+25+q*30 + Math.cos(θ)*r, CY + Math.sin(θ)*r);
+      ctx.strokeStyle = `hsla(${S[i].h},${S[i].s}%,${S[i].l}%,${a})`;
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+    }
+  }
+  ctx.restore();
+}
+
+// ═══ PI PATH - single continuous path, no gaps ═══
+function drawPiPath(ctx, cx, cy, s) {
+  // Top bar
+  ctx.beginPath();
+  ctx.moveTo(cx-0.52*s, cy-0.28*s);
+  ctx.quadraticCurveTo(cx-0.50*s, cy-0.42*s, cx-0.38*s, cy-0.44*s);
+  ctx.bezierCurveTo(cx-0.15*s, cy-0.45*s, cx+0.25*s, cy-0.44*s, cx+0.42*s, cy-0.44*s);
+  ctx.quadraticCurveTo(cx+0.54*s, cy-0.43*s, cx+0.56*s, cy-0.30*s);
+  ctx.quadraticCurveTo(cx+0.50*s, cy-0.36*s, cx+0.38*s, cy-0.36*s);
+  ctx.lineTo(cx-0.32*s, cy-0.36*s);
+  ctx.quadraticCurveTo(cx-0.44*s, cy-0.36*s, cx-0.52*s, cy-0.28*s);
+  ctx.closePath();
+  ctx.fill();
+  
+  // Left leg - separate fill
+  ctx.beginPath();
+  ctx.moveTo(cx-0.18*s, cy-0.36*s);
+  ctx.lineTo(cx-0.06*s, cy-0.36*s);
+  ctx.bezierCurveTo(cx-0.12*s, cy-0.18*s, cx-0.22*s, cy+0.05*s, cx-0.26*s, cy+0.22*s);
+  ctx.bezierCurveTo(cx-0.28*s, cy+0.32*s, cx-0.30*s, cy+0.48*s, cx-0.26*s, cy+0.58*s);
+  ctx.quadraticCurveTo(cx-0.30*s, cy+0.66*s, cx-0.36*s, cy+0.62*s);
+  ctx.bezierCurveTo(cx-0.43*s, cy+0.58*s, cx-0.46*s, cy+0.50*s, cx-0.42*s, cy+0.38*s);
+  ctx.bezierCurveTo(cx-0.36*s, cy+0.12*s, cx-0.22*s, cy-0.12*s, cx-0.18*s, cy-0.36*s);
+  ctx.closePath();
+  ctx.fill();
+  
+  // Right leg - separate fill
+  ctx.beginPath();
+  ctx.moveTo(cx+0.22*s, cy-0.36*s);
+  ctx.lineTo(cx+0.32*s, cy-0.36*s);
+  ctx.bezierCurveTo(cx+0.28*s, cy-0.16*s, cx+0.22*s, cy+0.02*s, cx+0.20*s, cy+0.18*s);
+  ctx.bezierCurveTo(cx+0.18*s, cy+0.32*s, cx+0.20*s, cy+0.46*s, cx+0.26*s, cy+0.56*s);
+  ctx.quadraticCurveTo(cx+0.24*s, cy+0.65*s, cx+0.18*s, cy+0.62*s);
+  ctx.bezierCurveTo(cx+0.10*s, cy+0.60*s, cx+0.06*s, cy+0.52*s, cx+0.10*s, cy+0.38*s);
+  ctx.bezierCurveTo(cx+0.14*s, cy+0.12*s, cx+0.18*s, cy-0.12*s, cx+0.22*s, cy-0.36*s);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function drawMiniPi(ctx, x, y, scale, tilt) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(tilt);
+  ctx.scale(scale, scale);
+  
+  const s = 70;
+  ctx.fillStyle = '#fff';
+  
+  ctx.beginPath();
+  ctx.moveTo(-0.52*s, -0.28*s);
+  ctx.quadraticCurveTo(-0.50*s, -0.42*s, -0.38*s, -0.44*s);
+  ctx.bezierCurveTo(-0.15*s, -0.45*s, 0.25*s, -0.44*s, 0.42*s, -0.44*s);
+  ctx.quadraticCurveTo(0.54*s, -0.43*s, 0.56*s, -0.30*s);
+  ctx.quadraticCurveTo(0.50*s, -0.36*s, 0.38*s, -0.36*s);
+  ctx.lineTo(-0.32*s, -0.36*s);
+  ctx.quadraticCurveTo(-0.44*s, -0.36*s, -0.52*s, -0.28*s);
+  ctx.fill();
+  
+  ctx.beginPath();
+  ctx.moveTo(-0.18*s, -0.38*s);
+  ctx.bezierCurveTo(-0.22*s, -0.12*s, -0.36*s, 0.12*s, -0.42*s, 0.38*s);
+  ctx.bezierCurveTo(-0.46*s, 0.50*s, -0.43*s, 0.58*s, -0.36*s, 0.62*s);
+  ctx.quadraticCurveTo(-0.30*s, 0.66*s, -0.26*s, 0.58*s);
+  ctx.bezierCurveTo(-0.30*s, 0.48*s, -0.28*s, 0.32*s, -0.26*s, 0.22*s);
+  ctx.bezierCurveTo(-0.22*s, 0.05*s, -0.12*s, -0.18*s, -0.06*s, -0.36*s);
+  ctx.fill();
+  
+  ctx.beginPath();
+  ctx.moveTo(0.22*s, -0.38*s);
+  ctx.bezierCurveTo(0.18*s, -0.12*s, 0.14*s, 0.12*s, 0.10*s, 0.38*s);
+  ctx.bezierCurveTo(0.06*s, 0.52*s, 0.10*s, 0.60*s, 0.18*s, 0.62*s);
+  ctx.quadraticCurveTo(0.24*s, 0.65*s, 0.26*s, 0.56*s);
+  ctx.bezierCurveTo(0.20*s, 0.46*s, 0.18*s, 0.32*s, 0.20*s, 0.18*s);
+  ctx.bezierCurveTo(0.22*s, 0.02*s, 0.28*s, -0.16*s, 0.32*s, -0.36*s);
+  ctx.fill();
+  
+  ctx.restore();
+}
+
+drawHeroLogo();
+
+// ═══ HEADER & FOOTER LOGOS ═══
+function drawStaticLogo(canvasId, scale) {
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+  const D = devicePixelRatio || 1;
+  
+  const baseW = parseInt(canvas.width);
+  const baseH = parseInt(canvas.height);
+  
+  canvas.width = baseW * D;
+  canvas.height = baseH * D;
+  canvas.style.width = baseW + 'px';
+  canvas.style.height = baseH + 'px';
+  ctx.scale(D, D);
+  
+  const H = baseH;
+  const cx = 22 * scale;
+  const cy = H / 2;
+  const s = 18 * scale;
+  
+  ctx.fillStyle = '#fff';
+  
+  // Pi
+  ctx.beginPath();
+  ctx.moveTo(cx - 0.52*s, cy - 0.28*s);
+  ctx.quadraticCurveTo(cx - 0.50*s, cy - 0.42*s, cx - 0.38*s, cy - 0.44*s);
+  ctx.bezierCurveTo(cx - 0.15*s, cy - 0.45*s, cx + 0.25*s, cy - 0.44*s, cx + 0.42*s, cy - 0.44*s);
+  ctx.quadraticCurveTo(cx + 0.54*s, cy - 0.43*s, cx + 0.56*s, cy - 0.30*s);
+  ctx.quadraticCurveTo(cx + 0.50*s, cy - 0.36*s, cx + 0.38*s, cy - 0.36*s);
+  ctx.lineTo(cx - 0.32*s, cy - 0.36*s);
+  ctx.quadraticCurveTo(cx - 0.44*s, cy - 0.36*s, cx - 0.52*s, cy - 0.28*s);
+  ctx.fill();
+  
+  ctx.beginPath();
+  ctx.moveTo(cx - 0.18*s, cy - 0.38*s);
+  ctx.bezierCurveTo(cx - 0.22*s, cy - 0.12*s, cx - 0.36*s, cy + 0.12*s, cx - 0.42*s, cy + 0.38*s);
+  ctx.bezierCurveTo(cx - 0.46*s, cy + 0.50*s, cx - 0.43*s, cy + 0.58*s, cx - 0.36*s, cy + 0.62*s);
+  ctx.quadraticCurveTo(cx - 0.30*s, cy + 0.66*s, cx - 0.26*s, cy + 0.58*s);
+  ctx.bezierCurveTo(cx - 0.30*s, cy + 0.48*s, cx - 0.28*s, cy + 0.32*s, cx - 0.26*s, cy + 0.22*s);
+  ctx.bezierCurveTo(cx - 0.22*s, cy + 0.05*s, cx - 0.12*s, cy - 0.18*s, cx - 0.06*s, cy - 0.36*s);
+  ctx.fill();
+  
+  ctx.beginPath();
+  ctx.moveTo(cx + 0.22*s, cy - 0.38*s);
+  ctx.bezierCurveTo(cx + 0.18*s, cy - 0.12*s, cx + 0.14*s, cy + 0.12*s, cx + 0.10*s, cy + 0.38*s);
+  ctx.bezierCurveTo(cx + 0.06*s, cy + 0.52*s, cx + 0.10*s, cy + 0.60*s, cx + 0.18*s, cy + 0.62*s);
+  ctx.quadraticCurveTo(cx + 0.24*s, cy + 0.65*s, cx + 0.26*s, cy + 0.56*s);
+  ctx.bezierCurveTo(cx + 0.20*s, cy + 0.46*s, cx + 0.18*s, cy + 0.32*s, cx + 0.20*s, cy + 0.18*s);
+  ctx.bezierCurveTo(cx + 0.22*s, cy + 0.02*s, cx + 0.28*s, cy - 0.16*s, cx + 0.32*s, cy - 0.36*s);
+  ctx.fill();
+  
+  // Text
+  ctx.font = `500 ${14 * scale}px Georgia, "Times New Roman", Times, serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('Active Inference Institute', cx + 20 * scale, cy);
+}
+
+drawStaticLogo('header-logo', 1);
+drawStaticLogo('footer-logo', 0.9);
+</script>
+
+</body>
+</html>
