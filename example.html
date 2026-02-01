@@ -1976,40 +1976,40 @@ drawStaticLogo('footer-logo', 0.9);
   if (isUK) {
     const replacements = [
       // -ize to -ise
+      ['minimizing', 'minimising'],
       ['minimize', 'minimise'],
       ['Minimize', 'Minimise'],
-      ['minimizing', 'minimising'],
-      ['characterize', 'characterise'],
       ['characterizes', 'characterises'],
       ['characterized', 'characterised'],
-      ['visualize', 'visualise'],
+      ['characterize', 'characterise'],
       ['visualized', 'visualised'],
-      ['standardize', 'standardise'],
+      ['visualize', 'visualise'],
       ['standardized', 'standardised'],
-      ['personalize', 'personalise'],
+      ['standardize', 'standardise'],
       ['personalized', 'personalised'],
-      ['normalize', 'normalise'],
+      ['personalize', 'personalise'],
       ['Normalized', 'Normalised'],
       ['normalized', 'normalised'],
-      ['optimize', 'optimise'],
+      ['normalize', 'normalise'],
       ['optimized', 'optimised'],
-      ['recognize', 'recognise'],
+      ['optimize', 'optimise'],
       ['recognized', 'recognised'],
-      ['organize', 'organise'],
+      ['recognize', 'recognise'],
       ['organized', 'organised'],
+      ['organize', 'organise'],
       // -or to -our
       ['behavior', 'behaviour'],
       ['Behavior', 'Behaviour'],
       ['favor', 'favour'],
-      // -am to -amme
+      // -am to -amme (must use word boundaries)
       ['Programs', 'Programmes'],
       ['programs', 'programmes'],
       ['Program', 'Programme'],
       ['program', 'programme'],
       // other
+      ['organizations', 'organisations'],
       ['organization', 'organisation'],
       ['Organization', 'Organisation'],
-      ['organizations', 'organisations'],
       ['rigor', 'rigour'],
       ['Rigor', 'Rigour'],
       ['modeling', 'modelling'],
@@ -2019,7 +2019,7 @@ drawStaticLogo('footer-logo', 0.9);
       ['catalog', 'catalogue']
     ];
     
-    // Walk text nodes and replace
+    // Walk text nodes and replace using word boundaries
     const walker = document.createTreeWalker(
       document.body,
       NodeFilter.SHOW_TEXT,
@@ -2033,7 +2033,8 @@ drawStaticLogo('footer-logo', 0.9);
     textNodes.forEach(node => {
       let text = node.nodeValue;
       replacements.forEach(([us, uk]) => {
-        text = text.split(us).join(uk);
+        const regex = new RegExp('\\b' + us + '\\b', 'g');
+        text = text.replace(regex, uk);
       });
       node.nodeValue = text;
     });
