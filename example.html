@@ -6,7 +6,7 @@
   <title>The Active Inference Institute</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    
     :root {
       --black: #0d0d0d;
       --deep: #1a1412;
@@ -21,16 +21,16 @@
       --accent-warm: #b8442a;
       --gold: #c9a227;
     }
-
+    
     html { scroll-behavior: smooth; }
-
+    
     body {
       font-family: Georgia, 'Times New Roman', Times, serif;
       color: var(--grey-dark);
       line-height: 1.7;
       background: var(--white);
     }
-
+    
     /* Header */
     .header {
       background: var(--black);
@@ -41,7 +41,7 @@
       z-index: 1000;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-
+    
     .header-inner {
       max-width: 1400px;
       margin: 0 auto;
@@ -51,17 +51,17 @@
       height: 72px;
       padding: 0 40px;
     }
-
+    
     .logo-container canvas {
       display: block;
     }
-
+    
     .nav-links {
       display: flex;
       gap: 36px;
       align-items: center;
     }
-
+    
     .nav-links a {
       color: rgba(255,255,255,0.6);
       text-decoration: none;
@@ -70,88 +70,18 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       letter-spacing: 0.3px;
     }
-
+    
     .nav-links a:hover { color: var(--white); }
-
+    
     .nav-cta {
       background: var(--accent);
       color: var(--white) !important;
       padding: 10px 24px;
       font-weight: 500;
     }
-
+    
     .nav-cta:hover { background: var(--accent-light); }
-
-    /* Dropdown Menu */
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-toggle {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .dropdown-toggle::after {
-      content: '';
-      border: 4px solid transparent;
-      border-top-color: currentColor;
-      margin-top: 2px;
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--black);
-      border: 1px solid rgba(255,255,255,0.15);
-      min-width: 280px;
-      padding: 12px 0;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.2s ease;
-      margin-top: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    }
-
-    .dropdown:hover .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      margin-top: 8px;
-    }
-
-    .dropdown-menu a {
-      display: block;
-      padding: 10px 20px;
-      color: rgba(255,255,255,0.7) !important;
-      font-size: 13px;
-      transition: all 0.15s;
-    }
-
-    .dropdown-menu a:hover {
-      background: rgba(255,255,255,0.05);
-      color: var(--white) !important;
-      padding-left: 24px;
-    }
-
-    .dropdown-menu .menu-label {
-      padding: 8px 20px 4px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .dropdown-menu hr {
-      border: none;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      margin: 8px 0;
-    }
-
+    
     /* Hero Section - Full viewport with living canvas */
     .hero {
       min-height: 100vh;
@@ -159,7 +89,7 @@
       position: relative;
       overflow: hidden;
     }
-
+    
     .hero-canvas {
       position: absolute;
       top: 0;
@@ -167,7 +97,7 @@
       width: 100%;
       height: 100%;
     }
-
+    
     .hero-content {
       position: relative;
       z-index: 10;
@@ -181,11 +111,11 @@
       min-height: 100vh;
       justify-content: center;
     }
-
+    
     .hero-logo-area {
       margin-bottom: 60px;
     }
-
+    
     .hero h1 {
       font-size: clamp(2rem, 4vw, 2.8rem);
       font-weight: 400;
@@ -194,7 +124,7 @@
       line-height: 1.4;
       max-width: 700px;
     }
-
+    
     .hero-tagline {
       font-size: 1.1rem;
       color: rgba(255,255,255,0.6);
@@ -202,14 +132,14 @@
       line-height: 1.8;
       max-width: 600px;
     }
-
+    
     .hero-cta {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
       justify-content: center;
     }
-
+    
     .btn {
       padding: 14px 32px;
       font-size: 14px;
@@ -220,31 +150,31 @@
       font-weight: 500;
       letter-spacing: 0.3px;
     }
-
+    
     .btn-primary {
       background: var(--accent);
       color: var(--white);
     }
-
+    
     .btn-primary:hover { background: var(--accent-light); }
-
+    
     .btn-outline {
       border: 1px solid rgba(255,255,255,0.3);
       color: var(--white);
     }
-
+    
     .btn-outline:hover {
       background: rgba(255,255,255,0.05);
       border-color: rgba(255,255,255,0.5);
     }
-
+    
     /* Stats Section */
     .stats-section {
       background: var(--white);
       padding: 80px 40px;
       border-bottom: 1px solid var(--grey-border);
     }
-
+    
     .stats-inner {
       max-width: 1000px;
       margin: 0 auto;
@@ -252,18 +182,18 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 40px;
     }
-
+    
     .stat-item {
       text-align: center;
     }
-
+    
     .stat-item h3 {
       font-size: 2.5rem;
       font-weight: 400;
       color: var(--accent);
       margin-bottom: 8px;
     }
-
+    
     .stat-item p {
       color: var(--grey-mid);
       font-size: 13px;
@@ -271,22 +201,22 @@
       letter-spacing: 1px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
-
+    
     /* Content Sections */
     .section {
       padding: 100px 40px;
     }
-
+    
     .section-inner {
       max-width: 1100px;
       margin: 0 auto;
     }
-
+    
     .section-header {
       margin-bottom: 60px;
       text-align: center;
     }
-
+    
     .section-label {
       font-size: 12px;
       text-transform: uppercase;
@@ -296,247 +226,108 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-weight: 600;
     }
-
+    
     .section-header h2 {
       font-size: 2.2rem;
       font-weight: 400;
       color: var(--grey-dark);
     }
-
+    
     /* Mission */
     .mission-section {
       background: var(--grey-pale);
     }
-
+    
     .mission-content {
       max-width: 750px;
       margin: 0 auto;
       text-align: center;
     }
-
+    
     .mission-content p {
       font-size: 1.15rem;
       color: var(--grey-mid);
       margin-bottom: 24px;
       line-height: 1.9;
     }
-
-    /* Chapters Section */
-    .chapters-section {
-      background: var(--white);
-    }
-
-    .chapters-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-    }
-
-    .chapter-card {
-      border: 1px solid var(--grey-border);
-      padding: 32px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .chapter-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    }
-
-    .chapter-number {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 3rem;
-      font-weight: 300;
-      color: var(--grey-border);
-      line-height: 1;
-    }
-
-    .chapter-card h3 {
-      font-size: 1.2rem;
-      font-weight: 500;
-      margin-bottom: 12px;
-      color: var(--grey-dark);
-      padding-right: 50px;
-    }
-
-    .chapter-card p {
-      color: var(--grey-mid);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .chapter-link {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 13px;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: gap 0.2s;
-    }
-
-    .chapter-link:hover {
-      gap: 10px;
-    }
-
-    .chapter-link::after {
-      content: '→';
-    }
-
-    /* Glossary Section */
-    .glossary-section {
-      background: var(--deep);
-      color: var(--white);
-    }
-
-    .glossary-section .section-label {
-      color: rgba(255,255,255,0.4);
-    }
-
-    .glossary-section .section-header h2 {
-      color: var(--white);
-    }
-
-    .glossary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-
-    .glossary-item {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 24px;
-      transition: all 0.2s;
-    }
-
-    .glossary-item:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.15);
-    }
-
-    .glossary-term {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--gold);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .glossary-term .symbol {
-      font-family: 'Times New Roman', serif;
-      font-style: italic;
-      opacity: 0.7;
-    }
-
-    .glossary-definition {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .glossary-see-also {
-      margin-top: 12px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.4);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
-    .glossary-see-also a {
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-    }
-
-    .glossary-see-also a:hover {
-      color: var(--gold);
-    }
-
+    
     /* Pillars */
     .pillars-section {
       background: var(--white);
     }
-
+    
     .pillars-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 40px;
     }
-
+    
     .pillar-card {
       text-align: center;
       padding: 50px 30px;
       border: 1px solid var(--grey-border);
       transition: all 0.3s ease;
     }
-
+    
     .pillar-card:hover {
       border-color: var(--accent);
       transform: translateY(-4px);
       box-shadow: 0 20px 40px rgba(0,0,0,0.06);
     }
-
+    
     .pillar-card h3 {
       font-size: 1.3rem;
       font-weight: 400;
       margin-bottom: 16px;
       color: var(--grey-dark);
     }
-
+    
     .pillar-card p {
       color: var(--grey-mid);
       font-size: 0.95rem;
       line-height: 1.7;
     }
-
+    
     /* Programs */
     .programs-section {
       background: var(--deep);
       color: var(--white);
     }
-
+    
     .programs-section .section-label { color: rgba(255,255,255,0.4); }
     .programs-section .section-header h2 { color: var(--white); }
-
+    
     .programs-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
-
+    
     .program-card {
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.08);
       padding: 36px;
       transition: all 0.2s ease;
     }
-
+    
     .program-card:hover {
       background: rgba(255,255,255,0.06);
       border-color: rgba(255,255,255,0.15);
     }
-
+    
     .program-card h3 {
       font-size: 1.2rem;
       font-weight: 400;
       margin-bottom: 12px;
     }
-
+    
     .program-card p {
       color: rgba(255,255,255,0.6);
       font-size: 0.95rem;
       margin-bottom: 20px;
       line-height: 1.7;
     }
-
+    
     .program-link {
       color: #b794d4;
       text-decoration: none;
@@ -544,20 +335,20 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-weight: 500;
     }
-
+    
     .program-link:hover { color: #d4b8e8; }
-
+    
     /* Membership Tiers */
     .membership-card {
       grid-column: span 2;
     }
-
+    
     .membership-tiers {
       display: flex;
       gap: 16px;
       margin: 20px 0;
     }
-
+    
     .tier {
       flex: 1;
       background: rgba(255,255,255,0.04);
@@ -568,32 +359,32 @@
       gap: 6px;
       transition: all 0.2s ease;
     }
-
+    
     .tier:hover {
       background: rgba(255,255,255,0.08);
       border-color: rgba(255,255,255,0.2);
     }
-
+    
     .tier-name {
       font-size: 14px;
       font-weight: 500;
       color: var(--white);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
-
+    
     .tier-price {
       font-size: 1.3rem;
       color: #b794d4;
       font-family: Georgia, serif;
     }
-
+    
     .tier-desc {
       font-size: 12px;
       color: rgba(255,255,255,0.5);
       line-height: 1.5;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
-
+    
     @media (max-width: 768px) {
       .membership-card {
         grid-column: span 1;
@@ -602,7 +393,7 @@
         flex-direction: column;
       }
     }
-
+    
     /* Quote */
     .quote-section {
       background: var(--white);
@@ -610,12 +401,12 @@
       text-align: center;
       border-top: 1px solid var(--grey-border);
     }
-
+    
     .quote-inner {
       max-width: 800px;
       margin: 0 auto;
     }
-
+    
     blockquote {
       font-size: 1.6rem;
       font-style: italic;
@@ -623,72 +414,72 @@
       margin-bottom: 28px;
       line-height: 1.6;
     }
-
+    
     .quote-author {
       color: var(--grey-light);
       font-size: 0.95rem;
     }
-
+    
     .quote-author strong { color: var(--grey-mid); }
-
+    
     /* CTA */
     .cta-section {
       background: var(--accent);
       padding: 80px 40px;
       text-align: center;
     }
-
+    
     .cta-inner {
       max-width: 600px;
       margin: 0 auto;
     }
-
+    
     .cta-section h2 {
       font-size: 1.8rem;
       font-weight: 400;
       color: var(--white);
       margin-bottom: 16px;
     }
-
+    
     .cta-section p {
       color: rgba(255,255,255,0.85);
       font-size: 1.05rem;
       margin-bottom: 32px;
     }
-
+    
     .cta-section .btn {
       background: var(--white);
       color: var(--accent);
     }
-
+    
     .cta-section .btn:hover { background: var(--grey-pale); }
-
+    
     /* Footer */
     .footer {
       background: var(--black);
       color: var(--white);
       padding: 60px 40px 30px;
     }
-
+    
     .footer-inner {
       max-width: 1100px;
       margin: 0 auto;
     }
-
+    
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 50px;
       margin-bottom: 50px;
     }
-
+    
     .footer-brand p {
       color: rgba(255,255,255,0.5);
       margin-top: 20px;
       font-size: 13px;
       line-height: 1.8;
     }
-
+    
     .footer-col h4 {
       font-size: 12px;
       text-transform: uppercase;
@@ -698,19 +489,19 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-weight: 600;
     }
-
+    
     .footer-col ul { list-style: none; }
     .footer-col li { margin-bottom: 10px; }
-
+    
     .footer-col a {
       color: rgba(255,255,255,0.5);
       text-decoration: none;
       font-size: 13px;
       transition: color 0.2s;
     }
-
+    
     .footer-col a:hover { color: var(--white); }
-
+    
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,0.1);
       padding-top: 30px;
@@ -718,18 +509,18 @@
       justify-content: space-between;
       align-items: center;
     }
-
+    
     .footer-bottom p {
       color: rgba(255,255,255,0.4);
       font-size: 12px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
-
+    
     .social-links {
       display: flex;
       gap: 24px;
     }
-
+    
     .social-links a {
       color: rgba(255,255,255,0.4);
       text-decoration: none;
@@ -737,36 +528,17 @@
       transition: color 0.2s;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
-
+    
     .social-links a:hover { color: var(--white); }
-
-    /* Logo hint */
-    .logo-hint {
-      position: absolute;
-      bottom: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 11px;
-      color: rgba(255,255,255,0.3);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .hero-logo-area:hover .logo-hint {
-      opacity: 1;
-    }
-
+    
     /* Responsive */
     @media (max-width: 1024px) {
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .pillars-grid { grid-template-columns: 1fr; }
       .programs-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
-      .chapters-grid { grid-template-columns: 1fr; }
     }
-
+    
     @media (max-width: 768px) {
       .header-inner { padding: 0 20px; }
       .nav-links { display: none; }
@@ -775,7 +547,6 @@
       .stats-inner { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-      .glossary-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -789,23 +560,8 @@
     </div>
     <nav class="nav-links">
       <a href="#about">About</a>
-      <div class="dropdown">
-        <a href="#chapters" class="dropdown-toggle">Tutorials</a>
-        <div class="dropdown-menu">
-          <div class="menu-label">Core Concepts</div>
-          <a href="fep_tutorial (3).html">From Beliefs to Action</a>
-          <a href="fep_surprise.html">Surprise Minimization</a>
-          <hr>
-          <div class="menu-label">Case Studies</div>
-          <a href="T_Maze (FEP).html">T-Maze (FEP Approach)</a>
-          <a href="T_Maze (CRR Experiment).html">T-Maze (CRR Framework)</a>
-          <a href="Apple-Frog.html">Apple or Frog?</a>
-          <hr>
-          <div class="menu-label">Advanced</div>
-          <a href="Ink.html">Chapter 3: The High Road</a>
-        </div>
-      </div>
-      <a href="#glossary">Glossary</a>
+      <a href="#education">Education</a>
+      <a href="#research">Research</a>
       <a href="#community">Community</a>
       <a href="#" class="nav-cta">Get Involved</a>
     </nav>
@@ -818,12 +574,11 @@
   <div class="hero-content">
     <div class="hero-logo-area">
       <canvas id="hero-logo"></canvas>
-      <span class="logo-hint">Triple-click to animate</span>
     </div>
     <h1>An open-science institute for understanding minds, brains, and behavior</h1>
     <p class="hero-tagline">Improving the accessibility, rigor, and applicability of the Active Inference framework - a unified theory of perception, action, and learning.</p>
     <div class="hero-cta">
-      <a href="#chapters" class="btn btn-primary">Start Learning</a>
+      <a href="#" class="btn btn-primary">Start Learning</a>
       <a href="#" class="btn btn-outline">Watch Introduction</a>
     </div>
   </div>
@@ -861,163 +616,6 @@
     <div class="mission-content">
       <p>Active Inference is a way of understanding sentient behavior - a theory that characterizes perception, planning, and action in terms of probabilistic inference. Developed by theoretical neuroscientist Karl Friston, it provides an integrated perspective on brain, cognition, and behavior.</p>
       <p>All backgrounds, time zones, and levels of familiarity with Active Inference are welcome to participate in the Institute.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Chapters Section -->
-<section class="section chapters-section" id="chapters">
-  <div class="section-inner">
-    <div class="section-header">
-      <p class="section-label">Interactive Tutorials</p>
-      <h2>Chapter-by-Chapter Breakdown</h2>
-    </div>
-    <div class="chapters-grid">
-      <div class="chapter-card">
-        <span class="chapter-number">1</span>
-        <h3>From Beliefs to Action</h3>
-        <p>A comprehensive introduction to the mechanics of active inference. Learn how agents form beliefs, update them through observations, and select actions to minimize expected free energy.</p>
-        <a href="fep_tutorial (3).html" class="chapter-link">Start Tutorial</a>
-      </div>
-      <div class="chapter-card">
-        <span class="chapter-number">2</span>
-        <h3>Surprise Minimization</h3>
-        <p>Explore the core concept of surprise in the Free Energy Principle. Understand how living systems maintain their existence by minimizing surprising sensory states.</p>
-        <a href="fep_surprise.html" class="chapter-link">Explore Concept</a>
-      </div>
-      <div class="chapter-card">
-        <span class="chapter-number">3</span>
-        <h3>The High Road</h3>
-        <p>Dive deeper into decision-making pathways and the hierarchical nature of inference. This chapter explores how abstract goals cascade into concrete actions.</p>
-        <a href="Ink.html" class="chapter-link">Read Chapter</a>
-      </div>
-      <div class="chapter-card">
-        <span class="chapter-number">4</span>
-        <h3>T-Maze: FEP Approach</h3>
-        <p>A classic experimental paradigm implemented through the Free Energy Principle lens. Watch an agent navigate uncertainty and learn reward locations through active inference.</p>
-        <a href="T_Maze (FEP).html" class="chapter-link">Run Simulation</a>
-      </div>
-      <div class="chapter-card">
-        <span class="chapter-number">5</span>
-        <h3>T-Maze: CRR Framework</h3>
-        <p>The same T-Maze scenario explored through the Coherence-Rupture-Regeneration framework. Compare approaches and understand how different formalisms capture similar dynamics.</p>
-        <a href="T_Maze (CRR Experiment).html" class="chapter-link">Compare Frameworks</a>
-      </div>
-      <div class="chapter-card">
-        <span class="chapter-number">6</span>
-        <h3>Apple or Frog?</h3>
-        <p>A binary choice case study demonstrating active inference in action. See how prior beliefs, sensory evidence, and preferences combine to drive perception and decision-making.</p>
-        <a href="Apple-Frog.html" class="chapter-link">Try Case Study</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Glossary Section -->
-<section class="section glossary-section" id="glossary">
-  <div class="section-inner">
-    <div class="section-header">
-      <p class="section-label">Reference</p>
-      <h2>Glossary of Key Terms</h2>
-    </div>
-    <div class="glossary-grid">
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Free Energy <span class="symbol">F</span>
-        </div>
-        <div class="glossary-definition">
-          A quantity that bounds surprise (negative log evidence). Minimizing free energy is equivalent to maximizing model evidence while minimizing complexity. It provides a tractable objective for inference.
-        </div>
-        <div class="glossary-see-also">See also: <a href="#" data-term="vfe">Variational Free Energy</a>, <a href="#" data-term="efe">Expected Free Energy</a></div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Active Inference
-        </div>
-        <div class="glossary-definition">
-          A framework where perception and action are both forms of inference. Agents minimize free energy by updating beliefs (perception) and by acting on the world to make observations conform to predictions.
-        </div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Surprise <span class="symbol">-log p(o)</span>
-        </div>
-        <div class="glossary-definition">
-          The negative log probability of an observation under a generative model. Surprising observations are those the model did not predict. Living systems minimize long-term average surprise to maintain homeostasis.
-        </div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Generative Model
-        </div>
-        <div class="glossary-definition">
-          A probabilistic model of how observations are generated from hidden states. It encodes beliefs about the causal structure of the environment and enables prediction and inference.
-        </div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Prior <span class="symbol">p(s)</span>
-        </div>
-        <div class="glossary-definition">
-          The probability distribution over hidden states before observing data. Priors encode expectations and can be empirical (learned) or fixed (preferences). Strong priors can override weak sensory evidence.
-        </div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Posterior <span class="symbol">p(s|o)</span>
-        </div>
-        <div class="glossary-definition">
-          The updated probability distribution over hidden states after incorporating observations. Computed via Bayes' rule, the posterior represents the agent's best guess about the true state of the world.
-        </div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Expected Free Energy <span class="symbol">G</span>
-        </div>
-        <div class="glossary-definition">
-          A quantity used for action selection that balances epistemic value (information gain) with pragmatic value (preference satisfaction). Policies are selected to minimize expected free energy over future time steps.
-        </div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Markov Blanket
-        </div>
-        <div class="glossary-definition">
-          The statistical boundary separating internal states from external states. It comprises sensory states (influenced by external) and active states (influencing external). Defines the "self" of any system.
-        </div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Precision <span class="symbol">π</span>
-        </div>
-        <div class="glossary-definition">
-          The inverse variance (confidence) of a probability distribution. High precision means confident predictions. Precision-weighting determines how much weight is given to predictions versus observations.
-        </div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Epistemic Value
-        </div>
-        <div class="glossary-definition">
-          The expected information gain from an action. Actions with high epistemic value reduce uncertainty about hidden states. This drives exploration and curiosity in active inference agents.
-        </div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Pragmatic Value
-        </div>
-        <div class="glossary-definition">
-          The expected preference satisfaction from an action. Actions with high pragmatic value lead to observations the agent prefers. This drives exploitation and goal-directed behavior.
-        </div>
-      </div>
-      <div class="glossary-item">
-        <div class="glossary-term">
-          Belief Updating
-        </div>
-        <div class="glossary-definition">
-          The process of revising probability distributions in light of new evidence. In active inference, this occurs through variational inference, iteratively minimizing the difference between approximate and true posteriors.
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1134,11 +732,11 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Tutorials</h4>
+        <h4>Education</h4>
         <ul>
-          <li><a href="fep_tutorial (3).html">Getting Started</a></li>
-          <li><a href="T_Maze (FEP).html">T-Maze</a></li>
-          <li><a href="#glossary">Glossary</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Textbook Group</a></li>
+          <li><a href="#">Symposium</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1193,18 +791,18 @@ window.addEventListener('resize', resizeHeroCanvas);
 function drawBreathWaves(ctx, t, W, H) {
   const breathPhase = (t % BREATH) / BREATH;
   const breathAmp = Math.sin(breathPhase * TAU) * 0.5 + 0.5;
-
+  
   // Very subtle radial gradient that pulses - warm tones
   const gradient = ctx.createRadialGradient(
     W * 0.5, H * 0.4, 0,
     W * 0.5, H * 0.4, W * 0.8
   );
-
+  
   const intensity = 0.025 + breathAmp * 0.015;
   gradient.addColorStop(0, `rgba(180, 70, 45, ${intensity})`);
   gradient.addColorStop(0.5, `rgba(100, 50, 40, ${intensity * 0.5})`);
   gradient.addColorStop(1, 'rgba(13, 13, 13, 0)');
-
+  
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, W, H);
 }
@@ -1214,16 +812,16 @@ let heroT = 0;
 function animateHeroBackground() {
   const W = window.innerWidth;
   const H = window.innerHeight;
-
+  
   heroT += 0.016;
-
+  
   // Clear with deep background
   heroCtx.fillStyle = '#0d0d0d';
   heroCtx.fillRect(0, 0, W, H);
-
+  
   // Subtle breath waves only - no particles
   drawBreathWaves(heroCtx, heroT, W, H);
-
+  
   requestAnimationFrame(animateHeroBackground);
 }
 
@@ -1244,7 +842,7 @@ function calculateLogoDimensions() {
   const mobile = isMobile();
   HLW = mobile ? Math.min(360, window.innerWidth - 40) : 600;
   HLH = mobile ? 280 : 200;
-
+  
   // Mobile: center the pi symbol, stack text below
   // Desktop: pi on left, text to right
   if (mobile) {
@@ -1275,10 +873,6 @@ function resizeHeroLogo() {
   heroLogoCanvas.style.height = HLH + 'px';
   hlCtx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform
   hlCtx.scale(D, D);
-  // Redraw static logo when resizing
-  if (!isAnimating) {
-    drawStaticHeroLogo();
-  }
 }
 
 resizeHeroLogo();
@@ -1299,7 +893,7 @@ function initAudio() {
 function playPrismHit() {
   if (!audioCtx || !audioEnabled) return;
   const now = audioCtx.currentTime;
-
+  
   // Noise burst
   const bufferSize = audioCtx.sampleRate * 0.15;
   const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
@@ -1307,20 +901,20 @@ function playPrismHit() {
   for (let i = 0; i < bufferSize; i++) {
     data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3));
   }
-
+  
   const noise = audioCtx.createBufferSource();
   noise.buffer = buffer;
-
+  
   const filter = audioCtx.createBiquadFilter();
   filter.type = 'bandpass';
   filter.frequency.setValueAtTime(2000, now);
   filter.frequency.exponentialRampToValueAtTime(8000, now + 0.1);
   filter.Q.value = 2;
-
+  
   const gain = audioCtx.createGain();
   gain.gain.setValueAtTime(0.15, now);
   gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
-
+  
   noise.connect(filter).connect(gain).connect(audioCtx.destination);
   noise.start(now);
 }
@@ -1329,25 +923,25 @@ function playPrismHit() {
 function playSpectralSweep() {
   if (!audioCtx || !audioEnabled) return;
   const now = audioCtx.currentTime;
-
+  
   // Frequencies mapped to visible spectrum (Red=low, Violet=high)
   const freqs = [220, 277, 330, 392, 494, 587, 698]; // A3 to F5 (roughly)
-
+  
   freqs.forEach((freq, i) => {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
-
+    
     osc.type = 'sine';
     osc.frequency.value = freq;
-
+    
     const delay = i * 0.08;
     const attack = 0.05;
     const decay = 0.4;
-
+    
     gain.gain.setValueAtTime(0, now + delay);
     gain.gain.linearRampToValueAtTime(0.08, now + delay + attack);
     gain.gain.exponentialRampToValueAtTime(0.001, now + delay + attack + decay);
-
+    
     osc.connect(gain).connect(audioCtx.destination);
     osc.start(now + delay);
     osc.stop(now + delay + attack + decay + 0.1);
@@ -1358,19 +952,19 @@ function playSpectralSweep() {
 function playTextShimmer() {
   if (!audioCtx || !audioEnabled) return;
   const now = audioCtx.currentTime;
-
+  
   for (let i = 0; i < 12; i++) {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
-
+    
     osc.type = 'sine';
     osc.frequency.value = 800 + Math.random() * 1200;
-
+    
     const delay = i * 0.06 + Math.random() * 0.03;
     gain.gain.setValueAtTime(0, now + delay);
     gain.gain.linearRampToValueAtTime(0.025, now + delay + 0.02);
     gain.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.15);
-
+    
     osc.connect(gain).connect(audioCtx.destination);
     osc.start(now + delay);
     osc.stop(now + delay + 0.2);
@@ -1381,157 +975,72 @@ function playTextShimmer() {
 function playBreathTone(phase) {
   if (!audioCtx || !audioEnabled) return;
   const now = audioCtx.currentTime;
-
+  
   const fundamental = 110; // A2
   const harmonics = [1, 2, 3, 5];
-
+  
   harmonics.forEach((h, i) => {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
-
+    
     osc.type = 'sine';
     osc.frequency.value = fundamental * h;
-
+    
     const amp = 0.04 / (i + 1);
     gain.gain.setValueAtTime(amp * phase, now);
     gain.gain.linearRampToValueAtTime(amp * 0.3, now + 0.5);
-
+    
     osc.connect(gain).connect(audioCtx.destination);
     osc.start(now);
     osc.stop(now + 0.6);
   });
 }
 
-// ═══ ANIMATION STATE ═══
-let isAnimating = false;
-let logoT = 0;
-let animationId = null;
-
-// Triple-click to start animation
+// Triple-click to replay with sound
 let clickCount = 0;
 let clickTimer = null;
 
 heroLogoCanvas.addEventListener('click', () => {
   clickCount++;
-
+  
   if (clickTimer) clearTimeout(clickTimer);
-
+  
   clickTimer = setTimeout(() => {
     if (clickCount >= 3) {
-      // Triple click - start animation with sound
+      // Triple click - replay with sound
       initAudio();
-      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
       audioEnabled = true;
       logoT = 0;
       lastSoundPhase = -1;
-      isAnimating = true;
-      if (animationId) cancelAnimationFrame(animationId);
-      drawAnimatedHeroLogo();
     }
     clickCount = 0;
   }, 300);
 });
 
 heroLogoCanvas.style.cursor = 'pointer';
-heroLogoCanvas.title = 'Triple-click to animate with sound';
+heroLogoCanvas.title = 'Triple-click to replay with sound';
 
-// ═══ STATIC HERO LOGO - Displayed on page load ═══
-function drawStaticHeroLogo() {
-  hlCtx.clearRect(0, 0, HLW, HLH);
+let logoT = 0;
 
-  const mobile = isMobile();
-  const Cs = 1; // Full coherence for static display
-
-  // ═══ PI SYMBOL ═══
-  hlCtx.fillStyle = '#fff';
-  drawPiPath(hlCtx, CX, CY, sc);
-  hlCtx.fill();
-
-  // ═══ CHILDREN - static position ═══
-  const miniScale = mobile ? 0.14 : 0.16;
-  drawMiniPi(hlCtx, CX - 8, CY - sc*0.44 - 8, miniScale, -0.3);
-  drawMiniPi(hlCtx, CX + 10, CY - sc*0.44 - 8, miniScale, 0.35);
-
-  // ═══ TEXT - static white ═══
-  if (mobile) {
-    const textCenterX = HLW / 2;
-    const textStartY = CY + sc * 0.7 + 20;
-
-    hlCtx.font = `600 ${FONT_MAIN}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.textAlign = 'center';
-    hlCtx.textBaseline = 'middle';
-    hlCtx.fillStyle = '#fff';
-    hlCtx.fillText('Active Inference', textCenterX, textStartY);
-    hlCtx.fillText('Institute', textCenterX, textStartY + 36);
-
-    // Est. 2020
-    hlCtx.font = `italic ${FONT_EST}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.fillStyle = 'rgba(201,162,39,0.85)';
-    hlCtx.fillText('Est. 2020', textCenterX, textStartY + 72);
-
-    // Act - Serve - Infer
-    const WY = HLH - 25;
-    hlCtx.font = `600 ${FONT_ASI}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.fillStyle = 'rgba(255,255,255,0.9)';
-    hlCtx.fillText('Act', textCenterX - 70, WY);
-    hlCtx.fillText('Serve', textCenterX, WY);
-    hlCtx.fillText('Infer', textCenterX + 70, WY);
-
-    hlCtx.font = `400 ${FONT_ASI - 2}px Georgia`;
-    hlCtx.fillStyle = 'rgba(255,255,255,0.5)';
-    hlCtx.fillText('-', textCenterX - 35, WY);
-    hlCtx.fillText('-', textCenterX + 35, WY);
-  } else {
-    const TX = CX + 55;
-
-    hlCtx.font = `600 ${FONT_MAIN}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.textAlign = 'left';
-    hlCtx.textBaseline = 'middle';
-    hlCtx.fillStyle = '#fff';
-    hlCtx.fillText('Active Inference', TX, CY-20);
-    hlCtx.fillText('Institute', TX, CY+25);
-
-    // Est. 2020
-    hlCtx.font = `italic ${FONT_EST}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.fillStyle = 'rgba(201,162,39,0.85)';
-    hlCtx.fillText('Est. 2020', TX + 175, CY + 26);
-
-    // Act - Serve - Infer
-    const WY = HLH - 30;
-    hlCtx.font = `600 ${FONT_ASI}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.fillStyle = 'rgba(255,255,255,0.9)';
-    hlCtx.textAlign = 'left';
-    hlCtx.fillText('Act', TX+50, WY);
-    hlCtx.fillText('Serve', TX+145, WY);
-    hlCtx.fillText('Infer', TX+245, WY);
-
-    hlCtx.font = '400 14px Georgia';
-    hlCtx.fillStyle = 'rgba(255,255,255,0.5)';
-    hlCtx.textAlign = 'center';
-    hlCtx.fillText('-', TX+97, WY);
-    hlCtx.fillText('-', TX+195, WY);
-  }
-}
-
-// ═══ ANIMATED HERO LOGO - Triggered by triple-click ═══
-function drawAnimatedHeroLogo() {
+function drawHeroLogo() {
   hlCtx.clearRect(0, 0, HLW, HLH);
   logoT += 0.016;
-
+  
   const mobile = isMobile();
-
+  
   // ═══ PHASE DYNAMICS ═══
-  const ξ = logoT * ψ;                           // Phase accumulation
+  const ξ = logoT * ψ;                           // Phase accumulation  
   const β = (logoT % BREATH) / BREATH;           // Breath cycle
   const breathMod = Math.sin(β * TAU);
   const C = Math.min(1, logoT * 0.3);            // Coherence integral
   const Cs = C * C * (3 - 2 * C);                // Smoothstep transfer function
-
+  
   // ═══ PRISM FLASH → TEXT WAVE ═══
   const T1 = 1.8, T2 = 2.5;                      // Flash duration, wave duration
   const pFlash = Math.min(1, logoT / T1);
   const pWave = Math.max(0, (logoT - 1.2) / T2);
-
+  
   // ═══ SOUND TRIGGERS ═══
   if (audioEnabled) {
     // Prism hit at start
@@ -1557,9 +1066,9 @@ function drawAnimatedHeroLogo() {
       setTimeout(() => { audioEnabled = false; }, 600);
     }
   }
-
+  
   if (pFlash < 1) drawPrismFlash(hlCtx, pFlash);
-
+  
   // ═══ PI SYMBOL ═══
   const s = 1 + breathMod * 0.012 * Cs;
   hlCtx.save();
@@ -1570,22 +1079,22 @@ function drawAnimatedHeroLogo() {
   drawPiPath(hlCtx, CX, CY, sc);
   hlCtx.fill();
   hlCtx.restore();
-
+  
   // ═══ CHILDREN - φ-locked oscillation ═══
   const cφ = logoT * φ * 0.8;
   const miniScale = mobile ? 0.14 : 0.16;
   drawMiniPi(hlCtx, CX - 8, CY - sc*0.44 - 8 - Math.sin(cφ)*1.5*Cs, miniScale, -0.3);
   drawMiniPi(hlCtx, CX + 10, CY - sc*0.44 - 8 - Math.sin(cφ+PI)*1.5*Cs, miniScale, 0.35);
-
+  
   // ═══ TEXT WITH CHROMATIC WAVE ═══
   if (mobile) {
     // Mobile: stacked layout, centered below pi
     const textCenterX = HLW / 2;
     const textStartY = CY + sc * 0.7 + 20;
-
+    
     drawSpectralText(hlCtx, 'Active Inference', textCenterX, textStartY, FONT_MAIN, Cs, pWave, logoT, 0, 1);
     drawSpectralText(hlCtx, 'Institute', textCenterX, textStartY + 36, FONT_MAIN, Cs, pWave, logoT, 0.15, 1);
-
+    
     // Est. 2020 - centered
     const estP = Math.max(0, (pWave - 0.3) / 0.7);
     const estΔ = estP > 0 && estP < 1 ? Math.sin(estP * PI) * 0.3 : 0;
@@ -1593,13 +1102,13 @@ function drawAnimatedHeroLogo() {
     hlCtx.textAlign = 'center';
     hlCtx.fillStyle = `rgba(${201+estΔ*50|0},${162+estΔ*40|0},39,${Cs*0.85})`;
     hlCtx.fillText('Est. 2020', textCenterX, textStartY + 72);
-
+    
     // Act - Serve - Infer centered at bottom
     const WY = HLH - 25;
     drawSpectralText(hlCtx, 'Act', textCenterX - 70, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.35, 1);
     drawSpectralText(hlCtx, 'Serve', textCenterX, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.45, 1);
     drawSpectralText(hlCtx, 'Infer', textCenterX + 70, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.55, 1);
-
+    
     hlCtx.font = `400 ${FONT_ASI - 2}px Georgia`;
     hlCtx.fillStyle = `rgba(255,255,255,${Cs*0.5})`;
     hlCtx.textAlign = 'center';
@@ -1610,7 +1119,7 @@ function drawAnimatedHeroLogo() {
     const TX = CX + 55;
     drawSpectralText(hlCtx, 'Active Inference', TX, CY-20, FONT_MAIN, Cs, pWave, logoT, 0);
     drawSpectralText(hlCtx, 'Institute', TX, CY+25, FONT_MAIN, Cs, pWave, logoT, 0.15);
-
+    
     // Est. 2020 - phase-delayed shimmer
     const estP = Math.max(0, (pWave - 0.3) / 0.7);
     const estΔ = estP > 0 && estP < 1 ? Math.sin(estP * PI) * 0.3 : 0;
@@ -1618,130 +1127,38 @@ function drawAnimatedHeroLogo() {
     hlCtx.textAlign = 'left';
     hlCtx.fillStyle = `rgba(${201+estΔ*50|0},${162+estΔ*40|0},39,${Cs*0.85})`;
     hlCtx.fillText('Est. 2020', TX + 175, CY + 26);
-
+    
     // Act - Serve - Infer with staggered wave
     const WY = HLH - 30;
     drawSpectralText(hlCtx, 'Act', TX+50, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.35, 1);
     drawSpectralText(hlCtx, 'Serve', TX+145, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.45, 1);
     drawSpectralText(hlCtx, 'Infer', TX+245, WY, FONT_ASI, Cs*0.9, pWave, logoT, 0.55, 1);
-
+    
     hlCtx.font = '400 14px Georgia';
     hlCtx.fillStyle = `rgba(255,255,255,${Cs*0.5})`;
     hlCtx.textAlign = 'center';
     hlCtx.fillText('-', TX+97, WY);
     hlCtx.fillText('-', TX+195, WY);
   }
-
-  // Continue animation for ~6 seconds, then return to static with gentle breathing
-  if (logoT < 6) {
-    animationId = requestAnimationFrame(drawAnimatedHeroLogo);
-  } else {
-    // Transition to breathing static logo
-    isAnimating = false;
-    drawBreathingLogo();
-  }
-}
-
-// ═══ BREATHING LOGO - Subtle animation after main animation completes ═══
-function drawBreathingLogo() {
-  hlCtx.clearRect(0, 0, HLW, HLH);
-  logoT += 0.016;
-
-  const mobile = isMobile();
-  const β = (logoT % BREATH) / BREATH;
-  const breathMod = Math.sin(β * TAU);
-
-  // ═══ PI SYMBOL with subtle breathing ═══
-  const s = 1 + breathMod * 0.008;
-  hlCtx.save();
-  hlCtx.translate(CX, CY);
-  hlCtx.scale(s, s);
-  hlCtx.translate(-CX, -CY);
-  hlCtx.fillStyle = '#fff';
-  drawPiPath(hlCtx, CX, CY, sc);
-  hlCtx.fill();
-  hlCtx.restore();
-
-  // ═══ CHILDREN - subtle floating ═══
-  const cφ = logoT * φ * 0.5;
-  const miniScale = mobile ? 0.14 : 0.16;
-  drawMiniPi(hlCtx, CX - 8, CY - sc*0.44 - 8 - Math.sin(cφ)*1, miniScale, -0.3);
-  drawMiniPi(hlCtx, CX + 10, CY - sc*0.44 - 8 - Math.sin(cφ+PI)*1, miniScale, 0.35);
-
-  // ═══ TEXT - static white ═══
-  if (mobile) {
-    const textCenterX = HLW / 2;
-    const textStartY = CY + sc * 0.7 + 20;
-
-    hlCtx.font = `600 ${FONT_MAIN}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.textAlign = 'center';
-    hlCtx.textBaseline = 'middle';
-    hlCtx.fillStyle = '#fff';
-    hlCtx.fillText('Active Inference', textCenterX, textStartY);
-    hlCtx.fillText('Institute', textCenterX, textStartY + 36);
-
-    hlCtx.font = `italic ${FONT_EST}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.fillStyle = 'rgba(201,162,39,0.85)';
-    hlCtx.fillText('Est. 2020', textCenterX, textStartY + 72);
-
-    const WY = HLH - 25;
-    hlCtx.font = `600 ${FONT_ASI}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.fillStyle = 'rgba(255,255,255,0.9)';
-    hlCtx.fillText('Act', textCenterX - 70, WY);
-    hlCtx.fillText('Serve', textCenterX, WY);
-    hlCtx.fillText('Infer', textCenterX + 70, WY);
-
-    hlCtx.font = `400 ${FONT_ASI - 2}px Georgia`;
-    hlCtx.fillStyle = 'rgba(255,255,255,0.5)';
-    hlCtx.fillText('-', textCenterX - 35, WY);
-    hlCtx.fillText('-', textCenterX + 35, WY);
-  } else {
-    const TX = CX + 55;
-
-    hlCtx.font = `600 ${FONT_MAIN}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.textAlign = 'left';
-    hlCtx.textBaseline = 'middle';
-    hlCtx.fillStyle = '#fff';
-    hlCtx.fillText('Active Inference', TX, CY-20);
-    hlCtx.fillText('Institute', TX, CY+25);
-
-    hlCtx.font = `italic ${FONT_EST}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.fillStyle = 'rgba(201,162,39,0.85)';
-    hlCtx.fillText('Est. 2020', TX + 175, CY + 26);
-
-    const WY = HLH - 30;
-    hlCtx.font = `600 ${FONT_ASI}px Georgia, "Times New Roman", Times, serif`;
-    hlCtx.fillStyle = 'rgba(255,255,255,0.9)';
-    hlCtx.textAlign = 'left';
-    hlCtx.fillText('Act', TX+50, WY);
-    hlCtx.fillText('Serve', TX+145, WY);
-    hlCtx.fillText('Infer', TX+245, WY);
-
-    hlCtx.font = '400 14px Georgia';
-    hlCtx.fillStyle = 'rgba(255,255,255,0.5)';
-    hlCtx.textAlign = 'center';
-    hlCtx.fillText('-', TX+97, WY);
-    hlCtx.fillText('-', TX+195, WY);
-  }
-
-  animationId = requestAnimationFrame(drawBreathingLogo);
+  
+  requestAnimationFrame(drawHeroLogo);
 }
 
 // ═══ SPECTRAL TEXT - Chromatic dispersion wave ═══
-// Models: Gaussian wave packet, Cauchy dispersion n(λ)=A+B/λ²,
+// Models: Gaussian wave packet, Cauchy dispersion n(λ)=A+B/λ², 
 // phase velocity v(λ)=c/n(λ), group velocity, interference
 function drawSpectralText(ctx, txt, x, y, sz, α, wP, t, delay, ctr) {
   const p = Math.max(0, Math.min(1, (wP - delay) / (1 - delay)));
   ctx.font = `600 ${sz}px Georgia, "Times New Roman", Times, serif`;
   ctx.textAlign = ctr ? 'center' : 'left';
   ctx.textBaseline = 'middle';
-
+  
   if (p <= 0) { ctx.fillStyle = `rgba(255,255,255,${α})`; ctx.fillText(txt, x, y); return; }
-
+  
   const m = ctx.measureText(txt), W = m.width, x0 = ctr ? x - W/2 : x;
   const λ0 = 0.12, σ = 0.09, k = TAU/λ0;           // Wave packet params - wider σ
   const A = 1, B = 0.018;                           // Cauchy coefficients
-
+  
   // ROYGBIV with refractive indices - vivid rainbow
   const S = [
     {h:0,s:100,l:55,n:A+B/0.16},    {h:30,s:100,l:55,n:A+B/0.13},
@@ -1749,11 +1166,11 @@ function drawSpectralText(ctx, txt, x, y, sz, α, wP, t, delay, ctr) {
     {h:200,s:100,l:55,n:A+B/0.07},  {h:260,s:100,l:60,n:A+B/0.05},
     {h:290,s:100,l:60,n:A+B/0.04}
   ];
-
+  
   const wf = p * 1.6;  // Wave front position
   ctx.save();
   ctx.globalCompositeOperation = 'screen';
-
+  
   for (let i = 0; i < S.length; i++) {
     const c = S[i], Δn = (c.n - S[0].n) * 0.6;     // Chromatic aberration
     for (let j = 0; j < txt.length; j++) {
@@ -1781,7 +1198,7 @@ function drawPrismFlash(ctx, p) {
              {h:120,s:100,l:45},{h:200,s:100,l:55},{h:260,s:100,l:60},{h:290,s:100,l:60}];
   ctx.save();
   ctx.globalCompositeOperation = 'screen';
-
+  
   if (p < 0.3) {
     // Incident white light
     const q = p / 0.3, bx = CX - 100 + q * 80;
@@ -1840,7 +1257,7 @@ function drawPiPath(ctx, cx, cy, s) {
   ctx.quadraticCurveTo(cx-0.44*s, cy-0.36*s, cx-0.52*s, cy-0.28*s);
   ctx.closePath();
   ctx.fill();
-
+  
   // Left leg - separate fill
   ctx.beginPath();
   ctx.moveTo(cx-0.18*s, cy-0.36*s);
@@ -1852,7 +1269,7 @@ function drawPiPath(ctx, cx, cy, s) {
   ctx.bezierCurveTo(cx-0.36*s, cy+0.12*s, cx-0.22*s, cy-0.12*s, cx-0.18*s, cy-0.36*s);
   ctx.closePath();
   ctx.fill();
-
+  
   // Right leg - separate fill
   ctx.beginPath();
   ctx.moveTo(cx+0.22*s, cy-0.36*s);
@@ -1871,10 +1288,10 @@ function drawMiniPi(ctx, x, y, scale, tilt) {
   ctx.translate(x, y);
   ctx.rotate(tilt);
   ctx.scale(scale, scale);
-
+  
   const s = 70;
   ctx.fillStyle = '#fff';
-
+  
   ctx.beginPath();
   ctx.moveTo(-0.52*s, -0.28*s);
   ctx.quadraticCurveTo(-0.50*s, -0.42*s, -0.38*s, -0.44*s);
@@ -1884,7 +1301,7 @@ function drawMiniPi(ctx, x, y, scale, tilt) {
   ctx.lineTo(-0.32*s, -0.36*s);
   ctx.quadraticCurveTo(-0.44*s, -0.36*s, -0.52*s, -0.28*s);
   ctx.fill();
-
+  
   ctx.beginPath();
   ctx.moveTo(-0.18*s, -0.38*s);
   ctx.bezierCurveTo(-0.22*s, -0.12*s, -0.36*s, 0.12*s, -0.42*s, 0.38*s);
@@ -1893,7 +1310,7 @@ function drawMiniPi(ctx, x, y, scale, tilt) {
   ctx.bezierCurveTo(-0.30*s, 0.48*s, -0.28*s, 0.32*s, -0.26*s, 0.22*s);
   ctx.bezierCurveTo(-0.22*s, 0.05*s, -0.12*s, -0.18*s, -0.06*s, -0.36*s);
   ctx.fill();
-
+  
   ctx.beginPath();
   ctx.moveTo(0.22*s, -0.38*s);
   ctx.bezierCurveTo(0.18*s, -0.12*s, 0.14*s, 0.12*s, 0.10*s, 0.38*s);
@@ -1902,35 +1319,34 @@ function drawMiniPi(ctx, x, y, scale, tilt) {
   ctx.bezierCurveTo(0.20*s, 0.46*s, 0.18*s, 0.32*s, 0.20*s, 0.18*s);
   ctx.bezierCurveTo(0.22*s, 0.02*s, 0.28*s, -0.16*s, 0.32*s, -0.36*s);
   ctx.fill();
-
+  
   ctx.restore();
 }
 
-// Initialize with static logo
-drawStaticHeroLogo();
+drawHeroLogo();
 
 // ═══ HEADER & FOOTER LOGOS ═══
 function drawStaticLogo(canvasId, scale) {
   const canvas = document.getElementById(canvasId);
   const ctx = canvas.getContext('2d');
   const D = devicePixelRatio || 1;
-
+  
   const baseW = parseInt(canvas.width);
   const baseH = parseInt(canvas.height);
-
+  
   canvas.width = baseW * D;
   canvas.height = baseH * D;
   canvas.style.width = baseW + 'px';
   canvas.style.height = baseH + 'px';
   ctx.scale(D, D);
-
+  
   const H = baseH;
   const cx = 22 * scale;
   const cy = H / 2;
   const s = 18 * scale;
-
+  
   ctx.fillStyle = '#fff';
-
+  
   // Pi
   ctx.beginPath();
   ctx.moveTo(cx - 0.52*s, cy - 0.28*s);
@@ -1941,7 +1357,7 @@ function drawStaticLogo(canvasId, scale) {
   ctx.lineTo(cx - 0.32*s, cy - 0.36*s);
   ctx.quadraticCurveTo(cx - 0.44*s, cy - 0.36*s, cx - 0.52*s, cy - 0.28*s);
   ctx.fill();
-
+  
   ctx.beginPath();
   ctx.moveTo(cx - 0.18*s, cy - 0.38*s);
   ctx.bezierCurveTo(cx - 0.22*s, cy - 0.12*s, cx - 0.36*s, cy + 0.12*s, cx - 0.42*s, cy + 0.38*s);
@@ -1950,7 +1366,7 @@ function drawStaticLogo(canvasId, scale) {
   ctx.bezierCurveTo(cx - 0.30*s, cy + 0.48*s, cx - 0.28*s, cy + 0.32*s, cx - 0.26*s, cy + 0.22*s);
   ctx.bezierCurveTo(cx - 0.22*s, cy + 0.05*s, cx - 0.12*s, cy - 0.18*s, cx - 0.06*s, cy - 0.36*s);
   ctx.fill();
-
+  
   ctx.beginPath();
   ctx.moveTo(cx + 0.22*s, cy - 0.38*s);
   ctx.bezierCurveTo(cx + 0.18*s, cy - 0.12*s, cx + 0.14*s, cy + 0.12*s, cx + 0.10*s, cy + 0.38*s);
@@ -1959,7 +1375,7 @@ function drawStaticLogo(canvasId, scale) {
   ctx.bezierCurveTo(cx + 0.20*s, cy + 0.46*s, cx + 0.18*s, cy + 0.32*s, cx + 0.20*s, cy + 0.18*s);
   ctx.bezierCurveTo(cx + 0.22*s, cy + 0.02*s, cx + 0.28*s, cy - 0.16*s, cx + 0.32*s, cy - 0.36*s);
   ctx.fill();
-
+  
   // Text
   ctx.font = `500 ${14 * scale}px Georgia, "Times New Roman", Times, serif`;
   ctx.textAlign = 'left';
